@@ -15,6 +15,10 @@
 		437FDF4F1BF59DBD00A2A73E /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF4B1BF59DBD00A2A73E /* ReactiveCocoa.framework */; };
 		437FDF511BF59DBD00A2A73E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF4D1BF59DBD00A2A73E /* Result.framework */; };
 		437FDF541BF5A77A00A2A73E /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FDF531BF5A77A00A2A73E /* Requester.swift */; };
+		437FDF551BF5B3B800A2A73E /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF4B1BF59DBD00A2A73E /* ReactiveCocoa.framework */; };
+		437FDF561BF5B3B800A2A73E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF4D1BF59DBD00A2A73E /* Result.framework */; };
+		437FDF581BF5B3BC00A2A73E /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF4B1BF59DBD00A2A73E /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		437FDF591BF5B3BC00A2A73E /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF4D1BF59DBD00A2A73E /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +30,20 @@
 			remoteInfo = Shirley;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		437FDF571BF5B3BA00A2A73E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				437FDF581BF5B3BC00A2A73E /* ReactiveCocoa.framework in CopyFiles */,
+				437FDF591BF5B3BC00A2A73E /* Result.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		437FDF2B1BF599F100A2A73E /* Shirley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shirley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +74,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				437FDF361BF599F100A2A73E /* Shirley.framework in Frameworks */,
+				437FDF551BF5B3B800A2A73E /* ReactiveCocoa.framework in Frameworks */,
+				437FDF561BF5B3B800A2A73E /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +179,7 @@
 				437FDF311BF599F100A2A73E /* Sources */,
 				437FDF321BF599F100A2A73E /* Frameworks */,
 				437FDF331BF599F100A2A73E /* Resources */,
+				437FDF571BF5B3BA00A2A73E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -394,6 +415,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = ShirleyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.natestedman.ShirleyTests;
@@ -405,6 +430,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = ShirleyTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.natestedman.ShirleyTests;
