@@ -15,18 +15,18 @@ import Foundation
 /// A protocol type for response messages, implemented by `Message`.
 public protocol MessageType
 {
-    // MARK: - Response
+    // MARK: - Types
     
     /// The response value type.
     typealias Response
     
+    /// The body value type.
+    typealias Body
+    
+    // MARK: - Properties
+    
     /// The response value.
     var response: Response { get }
-    
-    // MARK: - Data
-    
-    /// The body data type.
-    typealias Body
     
     /// The response body.
     var body: Body { get }
