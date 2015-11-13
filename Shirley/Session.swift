@@ -64,9 +64,9 @@ extension SessionType
     // MARK: - Requests
     
     /**
-    Returns a signal produer that will send a URL request and transform its results.
+    Returns a signal produer that will send a request and transform its results.
     
-    - parameter request: The URL request.
+    - parameter request: The request.
     */
     public func producerForRequest(request: Requester.Request) -> SignalProducer<Value, Requester.Error>
     {
