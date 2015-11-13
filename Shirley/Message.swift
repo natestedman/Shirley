@@ -32,6 +32,21 @@ public protocol MessageType
     var body: Body { get }
 }
 
+extension MessageType
+{
+    // MARK: - Transforms
+    
+    /**
+    Transforms the `body` of a message, while keeping the same `response`.
+    
+    - parameter transform: The transformation function.
+    */
+    public func map<Other>(transform: Body -> Other) -> Message<Response, Other>
+    {
+        return Message(response: response, body: transform(body))
+    }
+}
+
 extension MessageType where Response == NSURLResponse
 {
     // MARK: - Converting to an HTTP Response
