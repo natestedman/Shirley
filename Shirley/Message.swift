@@ -53,6 +53,20 @@ extension MessageType where Response == NSURLResponse
 /// A response message, with a response object and the response data.
 public struct Message<Response, Body>: MessageType
 {
+    // MARK: - Initialization
+    
+    /**
+    Initializes a message.
+    
+    - parameter response: The response value.
+    - parameter body:     The body value.
+    */
+    public init(response: Response, body: Body)
+    {
+        self.response = response
+        self.body = body
+    }
+    
     // MARK: - Response
     
     /// The URL response.
