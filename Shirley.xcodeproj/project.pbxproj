@@ -19,6 +19,18 @@
 		437FDF561BF5B3B800A2A73E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF4D1BF59DBD00A2A73E /* Result.framework */; };
 		437FDF581BF5B3BC00A2A73E /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF4B1BF59DBD00A2A73E /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		437FDF591BF5B3BC00A2A73E /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF4D1BF59DBD00A2A73E /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		437FDF691BF623F000A2A73E /* Shirley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF5F1BF623F000A2A73E /* Shirley.framework */; };
+		437FDF761BF6240F00A2A73E /* ShirleyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FDF3A1BF599F100A2A73E /* ShirleyTests.swift */; };
+		437FDF771BF6241300A2A73E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FDF451BF59A3800A2A73E /* Message.swift */; };
+		437FDF781BF6241300A2A73E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FDF471BF59D7C00A2A73E /* Session.swift */; };
+		437FDF791BF6241300A2A73E /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FDF531BF5A77A00A2A73E /* Requester.swift */; };
+		437FDF7A1BF6241600A2A73E /* Shirley.h in Headers */ = {isa = PBXBuildFile; fileRef = 437FDF2E1BF599F100A2A73E /* Shirley.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		437FDF801BF6245D00A2A73E /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF7C1BF6245D00A2A73E /* ReactiveCocoa.framework */; };
+		437FDF821BF6245D00A2A73E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF7E1BF6245D00A2A73E /* Result.framework */; };
+		437FDF841BF6247700A2A73E /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF7C1BF6245D00A2A73E /* ReactiveCocoa.framework */; };
+		437FDF851BF6247700A2A73E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF7E1BF6245D00A2A73E /* Result.framework */; };
+		437FDF871BF6247E00A2A73E /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF7C1BF6245D00A2A73E /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		437FDF881BF6247E00A2A73E /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF7E1BF6245D00A2A73E /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +39,13 @@
 			containerPortal = 437FDF221BF599F100A2A73E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 437FDF2A1BF599F100A2A73E;
+			remoteInfo = Shirley;
+		};
+		437FDF6A1BF623F000A2A73E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 437FDF221BF599F100A2A73E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 437FDF5E1BF623F000A2A73E;
 			remoteInfo = Shirley;
 		};
 /* End PBXContainerItemProxy section */
@@ -40,6 +59,17 @@
 			files = (
 				437FDF581BF5B3BC00A2A73E /* ReactiveCocoa.framework in CopyFiles */,
 				437FDF591BF5B3BC00A2A73E /* Result.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		437FDF861BF6247900A2A73E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				437FDF871BF6247E00A2A73E /* ReactiveCocoa.framework in CopyFiles */,
+				437FDF881BF6247E00A2A73E /* Result.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +87,10 @@
 		437FDF4B1BF59DBD00A2A73E /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = "<group>"; };
 		437FDF4D1BF59DBD00A2A73E /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
 		437FDF531BF5A77A00A2A73E /* Requester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
+		437FDF5F1BF623F000A2A73E /* Shirley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shirley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		437FDF681BF623F000A2A73E /* Shirley-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shirley-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		437FDF7C1BF6245D00A2A73E /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = "<group>"; };
+		437FDF7E1BF6245D00A2A73E /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +113,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		437FDF5B1BF623F000A2A73E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437FDF801BF6245D00A2A73E /* ReactiveCocoa.framework in Frameworks */,
+				437FDF821BF6245D00A2A73E /* Result.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		437FDF651BF623F000A2A73E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437FDF691BF623F000A2A73E /* Shirley.framework in Frameworks */,
+				437FDF841BF6247700A2A73E /* ReactiveCocoa.framework in Frameworks */,
+				437FDF851BF6247700A2A73E /* Result.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -97,6 +150,8 @@
 			children = (
 				437FDF2B1BF599F100A2A73E /* Shirley.framework */,
 				437FDF351BF599F100A2A73E /* Shirley-OSXTests.xctest */,
+				437FDF5F1BF623F000A2A73E /* Shirley.framework */,
+				437FDF681BF623F000A2A73E /* Shirley-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +180,7 @@
 		437FDF491BF59DA700A2A73E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				437FDF7B1BF6245D00A2A73E /* iOS */,
 				437FDF4A1BF59DBD00A2A73E /* Mac */,
 			);
 			name = Frameworks;
@@ -140,6 +196,16 @@
 			path = Carthage/Build/Mac;
 			sourceTree = "<group>";
 		};
+		437FDF7B1BF6245D00A2A73E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				437FDF7C1BF6245D00A2A73E /* ReactiveCocoa.framework */,
+				437FDF7E1BF6245D00A2A73E /* Result.framework */,
+			);
+			name = iOS;
+			path = Carthage/Build/iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -148,6 +214,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				437FDF2F1BF599F100A2A73E /* Shirley.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		437FDF5C1BF623F000A2A73E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437FDF7A1BF6241600A2A73E /* Shirley.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +265,43 @@
 			productReference = 437FDF351BF599F100A2A73E /* Shirley-OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		437FDF5E1BF623F000A2A73E /* Shirley-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 437FDF701BF623F000A2A73E /* Build configuration list for PBXNativeTarget "Shirley-iOS" */;
+			buildPhases = (
+				437FDF5A1BF623F000A2A73E /* Sources */,
+				437FDF5B1BF623F000A2A73E /* Frameworks */,
+				437FDF5C1BF623F000A2A73E /* Headers */,
+				437FDF5D1BF623F000A2A73E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shirley-iOS";
+			productName = Shirley;
+			productReference = 437FDF5F1BF623F000A2A73E /* Shirley.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		437FDF671BF623F000A2A73E /* Shirley-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 437FDF731BF623F000A2A73E /* Build configuration list for PBXNativeTarget "Shirley-iOSTests" */;
+			buildPhases = (
+				437FDF641BF623F000A2A73E /* Sources */,
+				437FDF651BF623F000A2A73E /* Frameworks */,
+				437FDF661BF623F000A2A73E /* Resources */,
+				437FDF861BF6247900A2A73E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				437FDF6B1BF623F000A2A73E /* PBXTargetDependency */,
+			);
+			name = "Shirley-iOSTests";
+			productName = ShirleyTests;
+			productReference = 437FDF681BF623F000A2A73E /* Shirley-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -205,6 +316,12 @@
 						CreatedOnToolsVersion = 7.1;
 					};
 					437FDF341BF599F100A2A73E = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					437FDF5E1BF623F000A2A73E = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					437FDF671BF623F000A2A73E = {
 						CreatedOnToolsVersion = 7.1;
 					};
 				};
@@ -223,6 +340,8 @@
 			targets = (
 				437FDF2A1BF599F100A2A73E /* Shirley-OSX */,
 				437FDF341BF599F100A2A73E /* Shirley-OSXTests */,
+				437FDF5E1BF623F000A2A73E /* Shirley-iOS */,
+				437FDF671BF623F000A2A73E /* Shirley-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -236,6 +355,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		437FDF331BF599F100A2A73E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		437FDF5D1BF623F000A2A73E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		437FDF661BF623F000A2A73E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -263,6 +396,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		437FDF5A1BF623F000A2A73E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437FDF781BF6241300A2A73E /* Session.swift in Sources */,
+				437FDF771BF6241300A2A73E /* Message.swift in Sources */,
+				437FDF791BF6241300A2A73E /* Requester.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		437FDF641BF623F000A2A73E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				437FDF761BF6240F00A2A73E /* ShirleyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -270,6 +421,11 @@
 			isa = PBXTargetDependency;
 			target = 437FDF2A1BF599F100A2A73E /* Shirley-OSX */;
 			targetProxy = 437FDF371BF599F100A2A73E /* PBXContainerItemProxy */;
+		};
+		437FDF6B1BF623F000A2A73E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 437FDF5E1BF623F000A2A73E /* Shirley-iOS */;
+			targetProxy = 437FDF6A1BF623F000A2A73E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -441,6 +597,92 @@
 			};
 			name = Release;
 		};
+		437FDF711BF623F000A2A73E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Shirley/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.natestedman.Shirley;
+				PRODUCT_NAME = Shirley;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		437FDF721BF623F000A2A73E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Shirley/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.natestedman.Shirley;
+				PRODUCT_NAME = Shirley;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		437FDF741BF623F000A2A73E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = ShirleyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.natestedman.ShirleyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		437FDF751BF623F000A2A73E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = ShirleyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.natestedman.ShirleyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -466,6 +708,22 @@
 			buildConfigurations = (
 				437FDF431BF599F100A2A73E /* Debug */,
 				437FDF441BF599F100A2A73E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		437FDF701BF623F000A2A73E /* Build configuration list for PBXNativeTarget "Shirley-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				437FDF711BF623F000A2A73E /* Debug */,
+				437FDF721BF623F000A2A73E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		437FDF731BF623F000A2A73E /* Build configuration list for PBXNativeTarget "Shirley-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				437FDF741BF623F000A2A73E /* Debug */,
+				437FDF751BF623F000A2A73E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

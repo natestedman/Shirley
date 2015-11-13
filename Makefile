@@ -1,6 +1,6 @@
 XCODE_COMMAND=$(shell { command -v xctool || command -v xcodebuild; } 2>/dev/null)
 XCODE_GENERIC_FLAGS=-project 'Shirley.xcodeproj'
-XCODE_OSX_FLAGS=-scheme 'Shirley'
+XCODE_OSX_FLAGS=-scheme 'Shirley-OSX'
 XCODE_IOS_FLAGS=-scheme 'Shirley-iOS'
 
 .PHONY: all clean docs test
