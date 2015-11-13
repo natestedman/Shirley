@@ -14,5 +14,6 @@ custom_categories:
       children:
           - RequesterType
           - NSURLSession
+          - Error
           - Request
           - Value
