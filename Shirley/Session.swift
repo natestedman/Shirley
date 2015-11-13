@@ -32,7 +32,7 @@ public protocol SessionType
      - parameter URLSession: The URL session to use.
      - parameter transform:  The transformation function to use.
      */
-    init(requester: Requester, transform: Requester.Value -> SignalProducer<Value, NSError>)
+    init(requester: Requester, transform: Requester.Value -> SignalProducer<Value, Requester.Error>)
     
     // MARK: - Properties
     
@@ -40,7 +40,7 @@ public protocol SessionType
     var requester: Requester { get }
     
     /// The transform function used by this session.
-    var transform: Requester.Value -> SignalProducer<Value, NSError> { get }
+    var transform: Requester.Value -> SignalProducer<Value, Requester.Error> { get }
 }
 
 extension SessionType
@@ -54,7 +54,7 @@ extension SessionType
     
     - returns: A `Session`, with `Value` type `Other`.
     */
-    public func transform<Other>(transform: Value -> SignalProducer<Other, NSError>) -> Session<Requester, Other>
+    public func transform<Other>(transform: Value -> SignalProducer<Other, Requester.Error>) -> Session<Requester, Other>
     {
         return Session<Requester, Other>(requester: requester, transform: { message in
             self.transform(message).flatMap(.Merge, transform: transform)
@@ -68,7 +68,7 @@ extension SessionType
     
     - parameter request: The URL request.
     */
-    public func producerForRequest(request: Requester.Request) -> SignalProducer<Value, NSError>
+    public func producerForRequest(request: Requester.Request) -> SignalProducer<Value, Requester.Error>
     {
         return requester.producerForRequest(request).flatMap(.Merge, transform: transform)
     }
@@ -92,7 +92,7 @@ extension SessionType where Requester == NSURLSession, Value == Message<NSURLRes
     }
 }
 
-extension SessionType where Value: MessageType, Value.Response == NSURLResponse
+extension SessionType where Value: MessageType, Value.Response == NSURLResponse, Requester.Error == NSError
 {
     // MARK: - NSURLResponse
     
@@ -101,7 +101,8 @@ extension SessionType where Value: MessageType, Value.Response == NSURLResponse
     /// If a conversion cannot be made, the signal producer will send a `.Failed` event, with `SessionError`'s
     /// `.NotHTTPResponse` converted to an `NSError` object.
     ///
-    /// This property is only available when `Value` is `MessageType`, with a `Response` type of `NSURLResponse`.
+    /// This property is only available when `Value` is `MessageType`, with a `Response` type of `NSURLResponse`, and
+    /// `Requester.Error` is `NSError`.
     public var HTTPSession: Session<Requester, Message<NSHTTPURLResponse, Value.Body>>
     {
         return transform({ message in
@@ -127,7 +128,7 @@ public struct Session<Requester: RequesterType, Value>: SessionType
     - parameter URLSession: The URL session to use.
     - parameter transform:  The transformation function to use.
     */
-    public init(requester: Requester, transform: Requester.Value -> SignalProducer<Value, NSError>)
+    public init(requester: Requester, transform: Requester.Value -> SignalProducer<Value, Requester.Error>)
     {
         self.requester = requester
         self.transform = transform
@@ -139,7 +140,7 @@ public struct Session<Requester: RequesterType, Value>: SessionType
     public let requester: Requester
     
     /// The transform function used by this session.
-    public let transform: Requester.Value -> SignalProducer<Value, NSError>
+    public let transform: Requester.Value -> SignalProducer<Value, Requester.Error>
 }
 
 // MARK: - Errors

@@ -27,6 +27,9 @@ public protocol RequesterType
     /// The type of request consumed by the requester.
     typealias Request
     
+    /// The type of error produced by the requester when a request fails.
+    typealias Error: ErrorType
+    
     // MARK: - Signal Producers
     
     /**
@@ -34,7 +37,7 @@ public protocol RequesterType
      
      - parameter request: The request.
      */
-    func producerForRequest(request: Request) -> SignalProducer<Value, NSError>
+    func producerForRequest(request: Request) -> SignalProducer<Value, Error>
 }
 
 // MARK: - NSURLSession
@@ -49,6 +52,9 @@ extension NSURLSession: RequesterType
     
     /// The type of request consumed by the requester.
     public typealias Request = NSURLRequest
+    
+    /// The type of error produced by the requester when a request fails.
+    public typealias Error = NSError
     
     // MARK: - Signal Producers
     
