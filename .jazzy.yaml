@@ -1,0 +1,18 @@
+custom_categories:
+    - name: Sessions
+      children:
+          - Session
+          - SessionError
+          - SessionType
+    
+    - name: Messages
+      children:
+          - Message
+          - MessageType
+    
+    - name: Requesters
+      children:
+          - RequesterType
+          - NSURLSession
+          - Request
+          - Value
