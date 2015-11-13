@@ -50,7 +50,7 @@ extension SessionType
     /**
     Transforms a session into a session with a different value type.
     
-    - parameter transform: The transformation function tp use.
+    - parameter transform: The transformation function to use.
     
     - returns: A `Session`, with `Value` type `Other`.
     */
