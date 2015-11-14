@@ -63,6 +63,30 @@ extension MessageType where Response == NSURLResponse
     }
 }
 
+extension MessageType where Body == NSData
+{
+    // MARK: - Converting to JSON
+    
+    /**
+    Attempts to convert a data message to a JSON message.
+    
+    This function is only available when `Body` is `NSData`.
+    
+    - parameter options: The JSON reading options. This parameter may be omitted, in which case an empty set of options
+                         will be used.
+    
+    - throws: An error from `NSJSONSerialization`.
+    */
+    public func JSONMessageWithOptions(options: NSJSONReadingOptions = NSJSONReadingOptions())
+        throws -> Message<Response, AnyObject>
+    {
+        return Message(
+            response: response,
+            body: try NSJSONSerialization.JSONObjectWithData(body, options: NSJSONReadingOptions())
+        )
+    }
+}
+
 // MARK: - Implementation
 
 /// A response message, with a response object and the response data.
