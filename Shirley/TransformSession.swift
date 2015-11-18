@@ -11,11 +11,26 @@
 import Foundation
 import ReactiveCocoa
 
-/// Applies a transform to a session's errors, creating a new session. This type is wrapped in `Session` before being
-/// returned publically.
-internal struct TransformErrorSession<Request, Value, Error: ErrorType>
+/// Applies a transform to a session's values or errors, creating a new session. This type is wrapped in `Session`
+/// before being returned publically.
+internal struct TransformSession<Request, Value, Error: ErrorType>
 {
     // MARK: - Initialization
+    
+    /**
+    Initializes a transform value session.
+    
+    - parameter session:         The session to wrap.
+    - parameter flattenStrategy: The flatten strategy to use when transforming.
+    - parameter transform:       The transform function.
+    */
+    init<Wrapped: SessionType where Request == Wrapped.Request, Error == Wrapped.Error>
+        (session: Wrapped, flattenStrategy: FlattenStrategy, transform: Wrapped.Value -> SignalProducer<Value, Error>)
+    {
+        self.producerFunction = { request in
+            session.producerForRequest(request).flatMap(flattenStrategy, transform: transform)
+        }
+    }
     
     /**
     Initializes a transform error session.
@@ -37,17 +52,17 @@ internal struct TransformErrorSession<Request, Value, Error: ErrorType>
     let producerFunction: Request -> SignalProducer<Value, Error>
 }
 
-extension TransformErrorSession: SessionType
+extension TransformSession: SessionType
 {
     // MARK: - SessionType
     
     /**
-    Converts a request into a `SignalProducer` value.
-    
-    - parameter request: The request.
-    
-    - returns: A signal producer for the request.
-    */
+     Converts a request into a `SignalProducer` value.
+     
+     - parameter request: The request.
+     
+     - returns: A signal producer for the request.
+     */
     func producerForRequest(request: Request) -> SignalProducer<Value, Error>
     {
         return producerFunction(request)
