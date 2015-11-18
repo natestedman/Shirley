@@ -33,6 +33,8 @@
 		43CF79C51BFCD22C007145B7 /* TransformSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C31BFCD214007145B7 /* TransformSessionTests.swift */; };
 		43CF79C71BFCD3AF007145B7 /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C61BFCD3AF007145B7 /* TestUtilities.swift */; };
 		43CF79C81BFCD3AF007145B7 /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C61BFCD3AF007145B7 /* TestUtilities.swift */; };
+		43CF79CC1BFCD5F2007145B7 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79CB1BFCD5F2007145B7 /* SessionTests.swift */; };
+		43CF79CD1BFCD5F2007145B7 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79CB1BFCD5F2007145B7 /* SessionTests.swift */; };
 		43D5EA061BFC3BBA00E48BD6 /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */; };
 		43D5EA081BFC3BFE00E48BD6 /* TransformSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA071BFC3BFE00E48BD6 /* TransformSession.swift */; };
 		43D5EA091BFC3BFE00E48BD6 /* TransformSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA071BFC3BFE00E48BD6 /* TransformSession.swift */; };
@@ -100,6 +102,7 @@
 		437FDF7E1BF6245D00A2A73E /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
 		43CF79C31BFCD214007145B7 /* TransformSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformSessionTests.swift; sourceTree = "<group>"; };
 		43CF79C61BFCD3AF007145B7 /* TestUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
+		43CF79CB1BFCD5F2007145B7 /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
 		43D5EA071BFC3BFE00E48BD6 /* TransformSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformSession.swift; sourceTree = "<group>"; };
 		43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
@@ -221,6 +224,7 @@
 		43CF79C91BFCD51A007145B7 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				43CF79CB1BFCD5F2007145B7 /* SessionTests.swift */,
 				43CF79C31BFCD214007145B7 /* TransformSessionTests.swift */,
 			);
 			name = Tests;
@@ -443,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CF79CC1BFCD5F2007145B7 /* SessionTests.swift in Sources */,
 				43CF79C71BFCD3AF007145B7 /* TestUtilities.swift in Sources */,
 				43CF79C41BFCD214007145B7 /* TransformSessionTests.swift in Sources */,
 			);
@@ -465,6 +470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CF79CD1BFCD5F2007145B7 /* SessionTests.swift in Sources */,
 				43CF79C81BFCD3AF007145B7 /* TestUtilities.swift in Sources */,
 				43CF79C51BFCD22C007145B7 /* TransformSessionTests.swift in Sources */,
 			);
