@@ -34,6 +34,14 @@ public protocol MessageType
 
 extension MessageType
 {
+    // MARK: - Tuple
+    
+    /// The value of the message, as a tuple.
+    public var tuple: (response: Response, body: Body)
+    {
+        return (response, body)
+    }
+    
     // MARK: - Transforms
     
     /**
