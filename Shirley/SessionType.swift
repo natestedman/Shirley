@@ -126,8 +126,7 @@ extension SessionType where Value: MessageType, Value.Body == NSData, Error == N
         return transform({ message in
             do
             {
-                let JSON = try NSJSONSerialization.JSONObjectWithData(message.body, options: options)
-                return SignalProducer(value: Message(response: message.response, body: JSON))
+                return SignalProducer(value: try message.JSONMessage(options))
             }
             catch let error as NSError
             {
