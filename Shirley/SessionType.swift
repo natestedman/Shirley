@@ -87,6 +87,14 @@ extension SessionType where Value: MessageType
     {
         return transform({ message in SignalProducer(value: message.tuple) })
     }
+    
+    // MARK: - Body Session
+    
+    /// Returns a transformed session, dropping the message's response and including only its body.
+    public func bodySession() -> Session<Request, Value.Body, Error>
+    {
+        return transform({ message in SignalProducer(value: message.body) })
+    }
 }
 
 extension SessionType where Value: MessageType, Value.Response == NSURLResponse, Error == NSError
