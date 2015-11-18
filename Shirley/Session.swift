@@ -93,16 +93,16 @@ extension SessionType where Value == Requester.Value
 
 extension SessionType where Value: MessageType, Value.Response == NSURLResponse, Requester.Error == NSError
 {
-    // MARK: - NSURLResponse
+    // MARK: - HTTP Response Session
     
     /// Returns a transformed session, converting `NSURLResponse` to `NSHTTPURLResponse`.
     ///
     /// If a conversion cannot be made, the signal producer will send a `.Failed` event, with `SessionError`'s
     /// `.NotHTTPResponse` converted to an `NSError` object.
     ///
-    /// This property is only available when `Value` is `MessageType`, with a `Response` type of `NSURLResponse`, and
+    /// This function is only available when `Value` is `MessageType`, with a `Response` type of `NSURLResponse`, and
     /// `Requester.Error` is `NSError`.
-    public var HTTPSession: Session<Requester, Message<NSHTTPURLResponse, Value.Body>>
+    public func HTTPSession() -> Session<Requester, Message<NSHTTPURLResponse, Value.Body>>
     {
         return transform({ message in
             message.HTTPMessage.map({ HTTPMessage in
@@ -129,6 +129,35 @@ extension SessionType where Value == NSData, Requester.Error == NSError
             do
             {
                 return SignalProducer(value: try NSJSONSerialization.JSONObjectWithData(data, options: options))
+            }
+            catch let error as NSError
+            {
+                return SignalProducer(error: error)
+            }
+        })
+    }
+}
+
+extension SessionType where Value: MessageType, Value.Body == NSData, Requester.Error == NSError
+{
+    // MARK: - JSON Message Session
+    
+    /**
+     Returns a transformed session, converting a message body `NSData` to JSON `AnyObject`.
+     
+     This function is only available if `Value` is a `MessageType` with `Body` type `NSData`, and `Requester.Error` is
+     `NSError`.
+     
+     - parameter options: The JSON reading options. If omitted, an empty set of options will be used.
+     */
+    public func JSONSession(options: NSJSONReadingOptions = NSJSONReadingOptions())
+        -> Session<Requester, Message<Value.Response, AnyObject>>
+    {
+        return transform({ message in
+            do
+            {
+                let JSON = try NSJSONSerialization.JSONObjectWithData(message.body, options: options)
+                return SignalProducer(value: Message(response: message.response, body: JSON))
             }
             catch let error as NSError
             {
