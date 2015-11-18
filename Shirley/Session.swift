@@ -11,13 +11,26 @@
 import Foundation
 import ReactiveCocoa
 
-/// A session type that wraps another `SessionType`, erasing its type.
+/// A session type that uses a closure to convert requests to signal producers.
+///
+/// `Session` can also be used to erase the type of arbitrary `SessionType` values.
 public struct Session<Request, Value, Error: ErrorType>
 {
     // MARK: - Initialization
     
     /**
-    Initializes a session.
+    Initializes a `Session` with a closure.
+    
+    - parameter function: The function to use to convert request values into signal producers.
+    */
+    public init(_ function: Request -> SignalProducer<Value, Error>)
+    {
+        producerFunction = function
+    }
+    
+    /**
+    Initializes a session by wrapping another `SessionType` with the same `Request`, `Value`, and `Error`, erasing its
+    type.
     
     - parameter URLSession: The URL session to use.
     - parameter transform:  The transformation function to use.
@@ -25,7 +38,7 @@ public struct Session<Request, Value, Error: ErrorType>
     public init<Wrapped: SessionType where Wrapped.Request == Request, Wrapped.Value == Value, Wrapped.Error == Error>
         (session: Wrapped)
     {
-        producerFunction = Wrapped.producerForRequest(session)
+        self.init(Wrapped.producerForRequest(session))
     }
     
     // MARK: - Properties
