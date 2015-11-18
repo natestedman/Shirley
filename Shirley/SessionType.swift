@@ -83,6 +83,8 @@ extension SessionType where Value: MessageType
     // MARK: - Tuple Session
     
     /// Returns a transformed session, converting a message into its tuple type.
+    ///
+    /// This function is only available when `Value` conforms to `MessageType`.
     public func tupleSession() -> Session<Request, (response: Value.Response, body: Value.Body), Error>
     {
         return transform({ message in SignalProducer(value: message.tuple) })
@@ -91,6 +93,8 @@ extension SessionType where Value: MessageType
     // MARK: - Body Session
     
     /// Returns a transformed session, dropping the message's response and including only its body.
+    ///
+    /// This function is only available when `Value` conforms to `MessageType`.
     public func bodySession() -> Session<Request, Value.Body, Error>
     {
         return transform({ message in SignalProducer(value: message.body) })
