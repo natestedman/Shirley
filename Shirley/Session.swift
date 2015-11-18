@@ -112,6 +112,32 @@ extension SessionType where Value: MessageType, Value.Response == NSURLResponse,
     }
 }
 
+extension SessionType where Value == NSData, Requester.Error == NSError
+{
+    // MARK: - JSON Session
+    
+    /**
+    Returns a transformed session, converting `NSData` to JSON `AnyObject`.
+    
+    This function is only available if `Value` is `NSData` and `Requester.Error` is `NSError`.
+    
+    - parameter options: The JSON reading options. If omitted, an empty set of options will be used.
+    */
+    public func JSONSession(options: NSJSONReadingOptions = NSJSONReadingOptions()) -> Session<Requester, AnyObject>
+    {
+        return transform({ data in
+            do
+            {
+                return SignalProducer(value: try NSJSONSerialization.JSONObjectWithData(data, options: options))
+            }
+            catch let error as NSError
+            {
+                return SignalProducer(error: error)
+            }
+        })
+    }
+}
+
 // MARK: - Implementation
 
 /// A wrapper type for a `Requester`. A session produces transformed `SignalProducer`s.
