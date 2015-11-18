@@ -77,7 +77,7 @@ extension MessageType where Body == NSData
     
     - throws: An error from `NSJSONSerialization`.
     */
-    public func JSONMessageWithOptions(options: NSJSONReadingOptions = NSJSONReadingOptions())
+    public func JSONMessage(options: NSJSONReadingOptions = NSJSONReadingOptions())
         throws -> Message<Response, AnyObject>
     {
         return Message(
