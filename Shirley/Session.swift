@@ -74,21 +74,20 @@ extension SessionType
     }
 }
 
-extension SessionType where Requester == NSURLSession, Value == Message<NSURLResponse, NSData>
+extension SessionType where Value == Requester.Value
 {
-    // MARK: - NSURLSession
+    // MARK: - Same Value Type
     
     /**
-    Initializes a session without transforming the URL response message.
+    Initializes a session without transforming the value.
     
-    This initializer is only available when `Requester` is `NSURLSession` and `Value` is
-    `Message<NSURLResponse, NSData>`.
+    This initializer is only available when `Requester.Value` is the same as `Value.
     
     - parameter URLSession: The URL session to use.
     */
-    public init(URLSession: NSURLSession)
+    public init(requester: Requester)
     {
-        self.init(requester: URLSession, transform: { message in SignalProducer(value: message) })
+        self.init(requester: requester, transform: { message in SignalProducer(value: message) })
     }
 }
 
