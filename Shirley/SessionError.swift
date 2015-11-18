@@ -30,6 +30,6 @@ public enum SessionError: Int, ErrorType
     /// Returns an `NSError` object for the error value.
     var NSError: Foundation.NSError
     {
-        return Foundation.NSError(domain: SessionError.domain, code: self.rawValue, userInfo: nil)
+        return Foundation.NSError(domain: SessionError.domain, code: rawValue, userInfo: nil)
     }
 }

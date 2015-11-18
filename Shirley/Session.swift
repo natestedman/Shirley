@@ -25,7 +25,7 @@ public struct Session<Request, Value, Error: ErrorType>
     public init<Wrapped: SessionType where Wrapped.Request == Request, Wrapped.Value == Value, Wrapped.Error == Error>
         (session: Wrapped)
     {
-        self.producerFunction = Wrapped.producerForRequest(session)
+        producerFunction = Wrapped.producerForRequest(session)
     }
     
     // MARK: - Properties

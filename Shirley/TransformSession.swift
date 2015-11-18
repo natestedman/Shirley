@@ -27,7 +27,7 @@ internal struct TransformSession<Request, Value, Error: ErrorType>
     init<Wrapped: SessionType where Request == Wrapped.Request, Error == Wrapped.Error>
         (session: Wrapped, flattenStrategy: FlattenStrategy, transform: Wrapped.Value -> SignalProducer<Value, Error>)
     {
-        self.producerFunction = { request in
+        producerFunction = { request in
             session.producerForRequest(request).flatMap(flattenStrategy, transform: transform)
         }
     }
@@ -41,7 +41,7 @@ internal struct TransformSession<Request, Value, Error: ErrorType>
     init<Wrapped: SessionType where Request == Wrapped.Request, Value == Wrapped.Value>
         (session: Wrapped, transform: Wrapped.Error -> SignalProducer<Value, Error>)
     {
-        self.producerFunction = { request in
+        producerFunction = { request in
             session.producerForRequest(request).flatMapError(transform)
         }
     }
