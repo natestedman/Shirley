@@ -60,6 +60,17 @@ extension SessionType
     }
 }
 
+extension SessionType where Value: MessageType
+{
+    // MARK: - Tuple Session
+    
+    /// Returns a transformed session, converting a message into its tuple type.
+    public func tupleSession() -> Session<Request, (response: Value.Response, body: Value.Body), Error>
+    {
+        return transform({ message in SignalProducer(value: message.tuple) })
+    }
+}
+
 extension SessionType where Value: MessageType, Value.Response == NSURLResponse, Error == NSError
 {
     // MARK: - HTTP Response Session
