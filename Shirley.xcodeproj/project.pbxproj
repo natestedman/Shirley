@@ -37,6 +37,8 @@
 		43D5EA0A1BFC3C0100E48BD6 /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */; };
 		43D5EA0C1BFC3F5900E48BD6 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */; };
 		43D5EA0D1BFC3F5900E48BD6 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */; };
+		43D5EA101BFC439500E48BD6 /* TransformErrorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA0F1BFC439500E48BD6 /* TransformErrorSession.swift */; };
+		43D5EA111BFC439500E48BD6 /* TransformErrorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA0F1BFC439500E48BD6 /* TransformErrorSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,7 @@
 		43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
 		43D5EA071BFC3BFE00E48BD6 /* TransformValueSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformValueSession.swift; sourceTree = "<group>"; };
 		43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
+		43D5EA0F1BFC439500E48BD6 /* TransformErrorSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformErrorSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,7 @@
 				437FDF471BF59D7C00A2A73E /* Session.swift */,
 				43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */,
 				43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */,
+				43D5EA0F1BFC439500E48BD6 /* TransformErrorSession.swift */,
 				43D5EA071BFC3BFE00E48BD6 /* TransformValueSession.swift */,
 				437FDF531BF5A77A00A2A73E /* NSURLSession+SessionType.swift */,
 			);
@@ -415,6 +419,7 @@
 				437FDF461BF59A3800A2A73E /* Message.swift in Sources */,
 				43D5EA061BFC3BBA00E48BD6 /* SessionType.swift in Sources */,
 				437FDF541BF5A77A00A2A73E /* NSURLSession+SessionType.swift in Sources */,
+				43D5EA101BFC439500E48BD6 /* TransformErrorSession.swift in Sources */,
 				43D5EA0C1BFC3F5900E48BD6 /* SessionError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +441,7 @@
 				43D5EA091BFC3BFE00E48BD6 /* TransformValueSession.swift in Sources */,
 				437FDF771BF6241300A2A73E /* Message.swift in Sources */,
 				437FDF791BF6241300A2A73E /* NSURLSession+SessionType.swift in Sources */,
+				43D5EA111BFC439500E48BD6 /* TransformErrorSession.swift in Sources */,
 				43D5EA0D1BFC3F5900E48BD6 /* SessionError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

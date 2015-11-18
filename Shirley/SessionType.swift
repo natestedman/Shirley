@@ -58,6 +58,24 @@ extension SessionType
             )
         )
     }
+    
+    /**
+     Transforms a session into a session with a different error type.
+     
+     - parameter transform: The transformation function to use.
+     
+     - returns: A `Session`, with `Error` type `Other`.
+     */
+    public func transformError<Other>(transform: Error -> SignalProducer<Value, Other>)
+        -> Session<Request, Value, Other>
+    {
+        return Session(
+            session: TransformErrorSession(
+                session: self,
+                transform: transform
+            )
+        )
+    }
 }
 
 extension SessionType where Value: MessageType
