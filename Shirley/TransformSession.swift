@@ -18,7 +18,7 @@ internal struct TransformSession<Request, Value, Error: ErrorType>
     // MARK: - Initialization
     
     /**
-    Initializes a transform value session.
+    Initializes a value transform session.
     
     - parameter session:         The session to wrap.
     - parameter flattenStrategy: The flatten strategy to use when transforming.
@@ -33,7 +33,7 @@ internal struct TransformSession<Request, Value, Error: ErrorType>
     }
     
     /**
-    Initializes a transform error session.
+    Initializes a error transform session.
     
     - parameter session:         The session to wrap.
     - parameter transform:       The transform function.
