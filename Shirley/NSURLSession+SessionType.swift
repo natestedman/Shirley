@@ -11,39 +11,8 @@
 import Foundation
 import ReactiveCocoa
 
-// MARK: - Protocol
-
-/// A type for values that can create signal producers for requests.
-///
-/// An implementation is provided for `NSURLSession`, and `SessionType` provides extensions specific to `NSURLSession`,
-/// but custom implementations are supported.
-public protocol RequesterType
-{
-    // MARK: - Types
-    
-    /// The type of values produced by successful requests.
-    typealias Value
-    
-    /// The type of request consumed by the requester.
-    typealias Request
-    
-    /// The type of error produced by the requester when a request fails.
-    typealias Error: ErrorType
-    
-    // MARK: - Signal Producers
-    
-    /**
-     Returns a signal producer for the specified request.
-     
-     - parameter request: The request.
-     */
-    func producerForRequest(request: Request) -> SignalProducer<Value, Error>
-}
-
-// MARK: - NSURLSession
-
-/// An implementation of `RequesterType` for `NSURLSession`.
-extension NSURLSession: RequesterType
+/// An implementation of `SessionType` for `NSURLSession`.
+extension NSURLSession: SessionType
 {
     // MARK: - Types
     
@@ -63,7 +32,7 @@ extension NSURLSession: RequesterType
      
      - parameter request: The URL request.
      */
-    public func producerForRequest(request: Request) -> SignalProducer<Value, NSError>
+    public func producerForRequest(request: Request) -> SignalProducer<Message<NSURLResponse, NSData>, NSError>
     {
         return rac_dataWithRequest(request).map({ data, response in
             Message(response: response, body: data)

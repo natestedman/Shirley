@@ -10,9 +10,8 @@ custom_categories:
           - Message
           - MessageType
     
-    - name: Requesters
+    - name: NSURLSession
       children:
-          - RequesterType
           - NSURLSession
           - Error
           - Request
