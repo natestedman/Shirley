@@ -31,6 +31,10 @@
 		437FDF851BF6247700A2A73E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF7E1BF6245D00A2A73E /* Result.framework */; };
 		437FDF871BF6247E00A2A73E /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF7C1BF6245D00A2A73E /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		437FDF881BF6247E00A2A73E /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF7E1BF6245D00A2A73E /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43CF79C41BFCD214007145B7 /* TransformSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C31BFCD214007145B7 /* TransformSessionTests.swift */; };
+		43CF79C51BFCD22C007145B7 /* TransformSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C31BFCD214007145B7 /* TransformSessionTests.swift */; };
+		43CF79C71BFCD3AF007145B7 /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C61BFCD3AF007145B7 /* TestUtilities.swift */; };
+		43CF79C81BFCD3AF007145B7 /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C61BFCD3AF007145B7 /* TestUtilities.swift */; };
 		43D5EA061BFC3BBA00E48BD6 /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */; };
 		43D5EA081BFC3BFE00E48BD6 /* TransformSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA071BFC3BFE00E48BD6 /* TransformSession.swift */; };
 		43D5EA091BFC3BFE00E48BD6 /* TransformSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA071BFC3BFE00E48BD6 /* TransformSession.swift */; };
@@ -97,6 +101,8 @@
 		437FDF681BF623F000A2A73E /* Shirley-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shirley-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		437FDF7C1BF6245D00A2A73E /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = "<group>"; };
 		437FDF7E1BF6245D00A2A73E /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = "<group>"; };
+		43CF79C31BFCD214007145B7 /* TransformSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformSessionTests.swift; sourceTree = "<group>"; };
+		43CF79C61BFCD3AF007145B7 /* TestUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
 		43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
 		43D5EA071BFC3BFE00E48BD6 /* TransformSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformSession.swift; sourceTree = "<group>"; };
 		43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
@@ -179,8 +185,10 @@
 		437FDF391BF599F100A2A73E /* ShirleyTests */ = {
 			isa = PBXGroup;
 			children = (
-				437FDF3A1BF599F100A2A73E /* ShirleyTests.swift */,
 				437FDF3C1BF599F100A2A73E /* Info.plist */,
+				437FDF3A1BF599F100A2A73E /* ShirleyTests.swift */,
+				43CF79C61BFCD3AF007145B7 /* TestUtilities.swift */,
+				43CF79C31BFCD214007145B7 /* TransformSessionTests.swift */,
 			);
 			path = ShirleyTests;
 			sourceTree = "<group>";
@@ -423,7 +431,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CF79C71BFCD3AF007145B7 /* TestUtilities.swift in Sources */,
 				437FDF3B1BF599F100A2A73E /* ShirleyTests.swift in Sources */,
+				43CF79C41BFCD214007145B7 /* TransformSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +454,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CF79C81BFCD3AF007145B7 /* TestUtilities.swift in Sources */,
 				437FDF761BF6240F00A2A73E /* ShirleyTests.swift in Sources */,
+				43CF79C51BFCD22C007145B7 /* TransformSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
