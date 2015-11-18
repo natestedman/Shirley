@@ -27,6 +27,8 @@ public protocol SessionType
     /// The type of errors yielded by signal producers created by the session.
     typealias Error: ErrorType
     
+    // MARK: - Creating Signal Producers
+    
     /**
      Converts a request into a `SignalProducer` value.
      
