@@ -38,7 +38,7 @@ public struct Session<Request, Value, Error: ErrorType>
     public init<Wrapped: SessionType where Wrapped.Request == Request, Wrapped.Value == Value, Wrapped.Error == Error>
         (session: Wrapped)
     {
-        self.init(Wrapped.producerForRequest(session))
+        self.init(session.producerForRequest)
     }
     
     // MARK: - Properties
