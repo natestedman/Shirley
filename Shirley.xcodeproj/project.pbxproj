@@ -41,6 +41,7 @@
 		43D5EA0A1BFC3C0100E48BD6 /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */; };
 		43D5EA0C1BFC3F5900E48BD6 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */; };
 		43D5EA0D1BFC3F5900E48BD6 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */; };
+		43E78CD61C07EFB70064A2C2 /* NSURLSession+Uploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E78CD51C07EFB70064A2C2 /* NSURLSession+Uploads.swift */; };
 		43E78CD81C07EFC40064A2C2 /* NSURLSession+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E78CD71C07EFC40064A2C2 /* NSURLSession+Downloads.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		43D5EA051BFC3BBA00E48BD6 /* SessionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
 		43D5EA071BFC3BFE00E48BD6 /* TransformSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformSession.swift; sourceTree = "<group>"; };
 		43D5EA0B1BFC3F5900E48BD6 /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionError.swift; sourceTree = "<group>"; };
+		43E78CD51C07EFB70064A2C2 /* NSURLSession+Uploads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+Uploads.swift"; sourceTree = "<group>"; };
 		43E78CD71C07EFC40064A2C2 /* NSURLSession+Downloads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+Downloads.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,6 +251,8 @@
 				43D5EA071BFC3BFE00E48BD6 /* TransformSession.swift */,
 				437FDF531BF5A77A00A2A73E /* NSURLSession+SessionType.swift */,
 				43E78CD71C07EFC40064A2C2 /* NSURLSession+Downloads.swift */,
+				43E78CD51C07EFB70064A2C2 /* NSURLSession+Uploads.swift */,
+				437FDF301BF599F100A2A73E /* Info.plist */,
 			);
 			name = Sessions;
 			sourceTree = "<group>";
@@ -440,6 +444,7 @@
 				43D5EA081BFC3BFE00E48BD6 /* TransformSession.swift in Sources */,
 				437FDF481BF59D7C00A2A73E /* Session.swift in Sources */,
 				437FDF461BF59A3800A2A73E /* Message.swift in Sources */,
+				43E78CD61C07EFB70064A2C2 /* NSURLSession+Uploads.swift in Sources */,
 				43D5EA061BFC3BBA00E48BD6 /* SessionType.swift in Sources */,
 				43E78CD81C07EFC40064A2C2 /* NSURLSession+Downloads.swift in Sources */,
 				437FDF541BF5A77A00A2A73E /* NSURLSession+SessionType.swift in Sources */,

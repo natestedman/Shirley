@@ -13,6 +13,8 @@ custom_categories:
     - name: NSURLSession
       children:
           - NSURLSession
+          - UploadRequest
+          - UploadRequestSource
           - Error
           - Request
           - Value
