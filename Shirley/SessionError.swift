@@ -20,6 +20,9 @@ public enum SessionError: Int, ErrorType
     /// The URL response object could not be converted to `NSHTTPURLResponse`.
     case NotHTTPResponse
     
+    /// The operation failed, but an error was not provided by the underlying framework.
+    case UnknownError
+    
     // MARK: - Domain
     
     /// The domain for `NSError` objects created from `SessionError` values.
