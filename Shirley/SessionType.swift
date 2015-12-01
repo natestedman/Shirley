@@ -78,6 +78,21 @@ extension SessionType
             )
         )
     }
+    
+    /**
+     Transforms a session into a session with a different request type.
+     
+     - parameter transform: A transformation function, which transforms the transformed request type into the base
+                            request type.
+     
+     - returns: A `Session`, with `Request` type `Other`.
+     */
+    public func transformRequest<Other>(transform: Other -> Request) -> Session<Other, Value, Error>
+    {
+        return Session { other in
+            self.producerForRequest(transform(other))
+        }
+    }
 }
 
 extension SessionType where Value: MessageType
