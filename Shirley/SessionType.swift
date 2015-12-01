@@ -74,7 +74,7 @@ extension SessionType
         return Session(
             session: TransformSession(
                 session: self,
-                transform: transform
+                transformError: transform
             )
         )
     }

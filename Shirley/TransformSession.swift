@@ -35,14 +35,14 @@ internal struct TransformSession<Request, Value, Error: ErrorType>
     /**
     Initializes a error transform session.
     
-    - parameter session:         The session to wrap.
-    - parameter transform:       The transform function.
+    - parameter session:        The session to wrap.
+    - parameter transformError: The transform function.
     */
     init<Wrapped: SessionType where Request == Wrapped.Request, Value == Wrapped.Value>
-        (session: Wrapped, transform: Wrapped.Error -> SignalProducer<Value, Error>)
+        (session: Wrapped, transformError: Wrapped.Error -> SignalProducer<Value, Error>)
     {
         producerFunction = { request in
-            session.producerForRequest(request).flatMapError(transform)
+            session.producerForRequest(request).flatMapError(transformError)
         }
     }
     
