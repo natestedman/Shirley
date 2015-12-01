@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		434866D71C0DED620083DF86 /* SessionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434866D61C0DED620083DF86 /* SessionTypeTests.swift */; };
+		434866D81C0DED620083DF86 /* SessionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434866D61C0DED620083DF86 /* SessionTypeTests.swift */; };
 		437FDF2F1BF599F100A2A73E /* Shirley.h in Headers */ = {isa = PBXBuildFile; fileRef = 437FDF2E1BF599F100A2A73E /* Shirley.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437FDF361BF599F100A2A73E /* Shirley.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF2B1BF599F100A2A73E /* Shirley.framework */; };
 		437FDF461BF59A3800A2A73E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437FDF451BF59A3800A2A73E /* Message.swift */; };
@@ -88,6 +90,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		434866D61C0DED620083DF86 /* SessionTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTypeTests.swift; sourceTree = "<group>"; };
 		437FDF2B1BF599F100A2A73E /* Shirley.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shirley.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		437FDF2E1BF599F100A2A73E /* Shirley.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shirley.h; sourceTree = "<group>"; };
 		437FDF301BF599F100A2A73E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				43CF79CB1BFCD5F2007145B7 /* SessionTests.swift */,
+				434866D61C0DED620083DF86 /* SessionTypeTests.swift */,
 				43CF79C31BFCD214007145B7 /* TransformSessionTests.swift */,
 			);
 			name = Tests;
@@ -458,6 +462,7 @@
 			files = (
 				43CF79CC1BFCD5F2007145B7 /* SessionTests.swift in Sources */,
 				43CF79C71BFCD3AF007145B7 /* TestUtilities.swift in Sources */,
+				434866D71C0DED620083DF86 /* SessionTypeTests.swift in Sources */,
 				43CF79C41BFCD214007145B7 /* TransformSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +486,7 @@
 			files = (
 				43CF79CD1BFCD5F2007145B7 /* SessionTests.swift in Sources */,
 				43CF79C81BFCD3AF007145B7 /* TestUtilities.swift in Sources */,
+				434866D81C0DED620083DF86 /* SessionTypeTests.swift in Sources */,
 				43CF79C51BFCD22C007145B7 /* TransformSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
