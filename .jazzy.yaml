@@ -18,3 +18,7 @@ custom_categories:
           - Error
           - Request
           - Value
+          
+excluded_files:
+    # jazzy includes extensions of internal types as a documentation root
+    - Shirley/TransformSession.swift
