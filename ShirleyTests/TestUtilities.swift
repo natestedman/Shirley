@@ -39,5 +39,3 @@ struct TestError: ErrorType
 {
     let value: Int
 }
-
-
