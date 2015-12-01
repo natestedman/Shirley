@@ -25,7 +25,7 @@ class TransformSessionTests: XCTestCase
     
     func testTransformedErrors()
     {
-        let session = TransformSession(session: ErrorSession(), transform: { error in
+        let session = TransformSession(session: ErrorSession(), transformError: { error in
             SignalProducer(error: TestError(value: error.value + 1))
         })
         
