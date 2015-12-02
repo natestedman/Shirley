@@ -33,7 +33,7 @@ internal struct TransformSession<Request, Value, Error: ErrorType>
     }
     
     /**
-    Initializes a error transform session.
+    Initializes an error transform session.
     
     - parameter session:        The session to wrap.
     - parameter transformError: The transform function.
