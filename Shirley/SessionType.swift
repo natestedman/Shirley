@@ -53,11 +53,9 @@ extension SessionType
     public func transform<Other>(transform: Value -> SignalProducer<Other, Error>) -> Session<Request, Other, Error>
     {
         return Session(
-            session: TransformSession(
-                session: self,
-                flattenStrategy: .Concat,
-                transform: transform
-            )
+            session: self,
+            flattenStrategy: .Concat,
+            transform: transform
         )
     }
     
@@ -72,10 +70,8 @@ extension SessionType
         -> Session<Request, Value, Other>
     {
         return Session(
-            session: TransformSession(
-                session: self,
-                transformError: transform
-            )
+            session: self,
+            transformError: transform
         )
     }
     
