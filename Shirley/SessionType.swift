@@ -52,11 +52,9 @@ extension SessionType
     */
     public func transform<Other>(transform: Value -> SignalProducer<Other, Error>) -> Session<Request, Other, Error>
     {
-        return Session(
-            session: self,
-            flattenStrategy: .Concat,
-            transform: transform
-        )
+        return Session { request in
+            self.producerForRequest(request).flatMap(.Concat, transform: transform)
+        }
     }
     
     /**
@@ -69,10 +67,9 @@ extension SessionType
     public func transformError<Other>(transform: Error -> SignalProducer<Value, Other>)
         -> Session<Request, Value, Other>
     {
-        return Session(
-            session: self,
-            transformError: transform
-        )
+        return Session { request in
+            self.producerForRequest(request).flatMapError(transform)
+        }
     }
     
     /**
