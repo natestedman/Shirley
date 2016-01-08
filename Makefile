@@ -23,7 +23,7 @@ docs:
 		--module-version "0.1.0" \
 		--xcodebuild-arguments -scheme,Shirley-OSX \
 		--module Shirley \
-		--output Documentation \
+		--output Documentation
 
 test:
 	xcodebuild $(XCODE_GENERIC_FLAGS) $(XCODE_OSX_FLAGS) test
