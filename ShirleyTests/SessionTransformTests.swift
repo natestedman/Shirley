@@ -12,11 +12,11 @@
 import ReactiveCocoa
 import XCTest
 
-class TransformSessionTests: XCTestCase
+class SessionTransformTests: XCTestCase
 {
     func testTransformedValues()
     {
-        let session = Session(session: SquareSession(), flattenStrategy: .Concat, transform: { result in
+        let session = SquareSession().transform({ result in
             SignalProducer(value: result * 2)
         })
         
@@ -25,7 +25,7 @@ class TransformSessionTests: XCTestCase
     
     func testTransformedErrors()
     {
-        let session = Session(session: ErrorSession(), transformError: { error in
+        let session = ErrorSession().transformError({ error in
             SignalProducer(error: TestError(value: error.value + 1))
         })
         
