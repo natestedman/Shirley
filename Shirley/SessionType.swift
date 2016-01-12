@@ -50,7 +50,21 @@ extension SessionType
     
     - returns: A `Session`, with `Value` type `Other`.
     */
-    public func transform<Other>(transform: Value -> SignalProducer<Other, Error>) -> Session<Request, Other, Error>
+    public func map<Other>(transform: Value -> Other) -> Session<Request, Other, Error>
+    {
+        return flatMap(.Concat, transform: { value in SignalProducer(value: transform(value)) })
+    }
+    
+    /**
+     Performs a `flatMap` operation on each `SignalProducer` this session creates.
+
+     - parameter strategy:  The flatten strategy to use.
+     - parameter transform: The transformation function.
+
+     - returns: A `Session`, with `Value` type `Other`.
+     */
+    public func flatMap<Other>(strategy: FlattenStrategy, transform: Value -> SignalProducer<Other, Error>)
+        -> Session<Request, Other, Error>
     {
         return Session { request in
             self.producerForRequest(request).flatMap(.Concat, transform: transform)
@@ -64,7 +78,7 @@ extension SessionType
      
      - returns: A `Session`, with `Error` type `Other`.
      */
-    public func transformError<Other>(transform: Error -> SignalProducer<Value, Other>)
+    public func flatMapError<Other>(transform: Error -> SignalProducer<Value, Other>)
         -> Session<Request, Value, Other>
     {
         return Session { request in
@@ -80,7 +94,7 @@ extension SessionType
      
      - returns: A `Session`, with `Request` type `Other`.
      */
-    public func transformRequest<Other>(transform: Other -> Request) -> Session<Other, Value, Error>
+    public func mapRequest<Other>(transform: Other -> Request) -> Session<Other, Value, Error>
     {
         return Session { other in
             self.producerForRequest(transform(other))
@@ -97,7 +111,7 @@ extension SessionType where Value: MessageType
     /// This function is only available when `Value` conforms to `MessageType`.
     public func tupleSession() -> Session<Request, (response: Value.Response, body: Value.Body), Error>
     {
-        return transform({ message in SignalProducer(value: message.tuple) })
+        return map({ message in message.tuple })
     }
     
     // MARK: - Body Session
@@ -107,7 +121,7 @@ extension SessionType where Value: MessageType
     /// This function is only available when `Value` conforms to `MessageType`.
     public func bodySession() -> Session<Request, Value.Body, Error>
     {
-        return transform({ message in SignalProducer(value: message.body) })
+        return map({ message in message.body })
     }
 }
 
@@ -124,7 +138,7 @@ extension SessionType where Value: MessageType, Value.Response == NSURLResponse,
     /// `Requester.Error` is `NSError`.
     public func HTTPSession() -> Session<Request, Message<NSHTTPURLResponse, Value.Body>, Error>
     {
-        return transform({ message in
+        return flatMap(.Concat, transform: { message in
             message.HTTPMessage.map({ HTTPMessage in
                 SignalProducer(value: HTTPMessage)
             }) ?? SignalProducer(error: SessionError.NotHTTPResponse.NSError)
@@ -146,7 +160,7 @@ extension SessionType where Value == NSData, Error == NSError
     public func JSONSession(options: NSJSONReadingOptions = NSJSONReadingOptions())
         -> Session<Request, AnyObject, Error>
     {
-        return transform({ data in
+        return flatMap(.Concat, transform: { data in
             do
             {
                 return SignalProducer(value: try NSJSONSerialization.JSONObjectWithData(data, options: options))
@@ -174,7 +188,7 @@ extension SessionType where Value: MessageType, Value.Body == NSData, Error == N
     public func JSONSession(options: NSJSONReadingOptions = NSJSONReadingOptions())
         -> Session<Request, Message<Value.Response, AnyObject>, Error>
     {
-        return transform({ message in
+        return flatMap(.Concat, transform: { message in
             do
             {
                 return SignalProducer(value: try message.JSONMessage(options))
