@@ -33,6 +33,8 @@
 		437FDF851BF6247700A2A73E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 437FDF7E1BF6245D00A2A73E /* Result.framework */; };
 		437FDF871BF6247E00A2A73E /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF7C1BF6245D00A2A73E /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		437FDF881BF6247E00A2A73E /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 437FDF7E1BF6245D00A2A73E /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43BE54B91C49A160008E45D5 /* NSURLSession+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E78CD71C07EFC40064A2C2 /* NSURLSession+Downloads.swift */; };
+		43BE54BA1C49A162008E45D5 /* NSURLSession+Uploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E78CD51C07EFB70064A2C2 /* NSURLSession+Uploads.swift */; };
 		43CF79C41BFCD214007145B7 /* SessionTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C31BFCD214007145B7 /* SessionTransformTests.swift */; };
 		43CF79C51BFCD22C007145B7 /* SessionTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C31BFCD214007145B7 /* SessionTransformTests.swift */; };
 		43CF79C71BFCD3AF007145B7 /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF79C61BFCD3AF007145B7 /* TestUtilities.swift */; };
@@ -470,12 +472,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43BE54BA1C49A162008E45D5 /* NSURLSession+Uploads.swift in Sources */,
 				434866DB1C0DF0B30083DF86 /* MessageType.swift in Sources */,
 				43D5EA0A1BFC3C0100E48BD6 /* SessionType.swift in Sources */,
 				437FDF781BF6241300A2A73E /* Session.swift in Sources */,
 				437FDF771BF6241300A2A73E /* Message.swift in Sources */,
 				437FDF791BF6241300A2A73E /* NSURLSession+SessionType.swift in Sources */,
 				43D5EA0D1BFC3F5900E48BD6 /* SessionError.swift in Sources */,
+				43BE54B91C49A160008E45D5 /* NSURLSession+Downloads.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
