@@ -10,6 +10,7 @@
 
 import Foundation
 import ReactiveCocoa
+import Result
 
 // MARK: - Protocol
 
@@ -98,6 +99,28 @@ extension SessionType
     {
         return Session { other in
             self.producerForRequest(transform(other))
+        }
+    }
+
+    /**
+     Transforms a session into a session with a diferent request type, allowing the transformation to fail.
+
+     - parameter transform: A transformation function, which, if possible, transforms a value of the transformed request
+                            type into a value of the base request type. If this cannot be done, returns a failure
+                            result.
+
+     - returns: A `Session`, with `Request` type `Other`.
+     */
+    public func flatMapRequest<Other>(transform: Other -> Result<Request, Error>) -> Session<Other, Value, Error>
+    {
+        return Session { other in
+            switch transform(other)
+            {
+            case .Success(let request):
+                return self.producerForRequest(request)
+            case .Failure(let error):
+                return SignalProducer(error: error)
+            }
         }
     }
 }
