@@ -88,7 +88,7 @@ extension MessageType where Body == NSData
     {
         return Message(
             response: response,
-            body: try NSJSONSerialization.JSONObjectWithData(body, options: NSJSONReadingOptions())
+            body: try NSJSONSerialization.JSONObjectWithData(body, options: options)
         )
     }
 }
