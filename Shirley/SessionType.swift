@@ -214,7 +214,10 @@ extension SessionType where Value: MessageType, Value.Body == NSData, Error == N
         return flatMapValues(.Concat, transform: { message in
             do
             {
-                return SignalProducer(value: try message.JSONMessage(options))
+                return SignalProducer(value: Message(
+                    response: message.response,
+                    body: try NSJSONSerialization.JSONObjectWithData(message.body, options: options)
+                ))
             }
             catch let error as NSError
             {
