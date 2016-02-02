@@ -162,8 +162,8 @@ extension SessionType where Value: MessageType, Value.Response == NSURLResponse,
     public func HTTPSession() -> Session<Request, Message<NSHTTPURLResponse, Value.Body>, Error>
     {
         return flatMapValues(.Concat, transform: { message in
-            message.HTTPMessage.map({ HTTPMessage in
-                SignalProducer(value: HTTPMessage)
+            (message.response as? NSHTTPURLResponse).map({ HTTP in
+                SignalProducer(value: Message(response: HTTP, body: message.body))
             }) ?? SignalProducer(error: SessionError.NotHTTPResponse.NSError)
         })
     }

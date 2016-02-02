@@ -53,22 +53,6 @@ extension MessageType
     }
 }
 
-extension MessageType where Response == NSURLResponse
-{
-    // MARK: - Converting to an HTTP Response
-    
-    /// Attempts to convert a non-HTTP `MessageType` to an HTTP `Message`. If the conversion is not possible, returns
-    /// `nil`.
-    ///
-    /// This property is only available when `Response` is `NSURLResponse`.
-    public var HTTPMessage: Message<NSHTTPURLResponse, Body>?
-    {
-        return (response as? NSHTTPURLResponse).map({ HTTP in
-            Message(response: HTTP, body: body)
-        })
-    }
-}
-
 extension MessageType where Body == NSData
 {
     // MARK: - Converting to JSON
