@@ -16,7 +16,7 @@ class SessionTransformTests: XCTestCase
 {
     func testTransformedValues()
     {
-        let session = SquareSession().flatMap(.Latest, transform: { result in
+        let session = SquareSession().flatMapValues(.Latest, transform: { result in
             SignalProducer(value: result * 2)
         })
         
@@ -25,7 +25,7 @@ class SessionTransformTests: XCTestCase
     
     func testTransformedErrors()
     {
-        let session = ErrorSession().flatMapError({ error in
+        let session = ErrorSession().flatMapErrors({ error in
             SignalProducer(error: TestError(value: error.value + 1))
         })
         

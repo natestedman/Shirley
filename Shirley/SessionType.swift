@@ -51,9 +51,9 @@ extension SessionType
     
     - returns: A `Session`, with `Value` type `Other`.
     */
-    public func map<Other>(transform: Value -> Other) -> Session<Request, Other, Error>
+    public func mapValues<Other>(transform: Value -> Other) -> Session<Request, Other, Error>
     {
-        return flatMap(.Concat, transform: { value in SignalProducer(value: transform(value)) })
+        return flatMapValues(.Concat, transform: { value in SignalProducer(value: transform(value)) })
     }
     
     /**
@@ -64,7 +64,7 @@ extension SessionType
 
      - returns: A `Session`, with `Value` type `Other`.
      */
-    public func flatMap<Other>(strategy: FlattenStrategy, transform: Value -> SignalProducer<Other, Error>)
+    public func flatMapValues<Other>(strategy: FlattenStrategy, transform: Value -> SignalProducer<Other, Error>)
         -> Session<Request, Other, Error>
     {
         return Session { request in
@@ -79,7 +79,7 @@ extension SessionType
      
      - returns: A `Session`, with `Error` type `Other`.
      */
-    public func flatMapError<Other>(transform: Error -> SignalProducer<Value, Other>)
+    public func flatMapErrors<Other>(transform: Error -> SignalProducer<Value, Other>)
         -> Session<Request, Value, Other>
     {
         return Session { request in
@@ -95,7 +95,7 @@ extension SessionType
      
      - returns: A `Session`, with `Request` type `Other`.
      */
-    public func mapRequest<Other>(transform: Other -> Request) -> Session<Other, Value, Error>
+    public func mapRequests<Other>(transform: Other -> Request) -> Session<Other, Value, Error>
     {
         return Session { other in
             self.producerForRequest(transform(other))
@@ -111,7 +111,7 @@ extension SessionType
 
      - returns: A `Session`, with `Request` type `Other`.
      */
-    public func flatMapRequest<Other>(transform: Other -> Result<Request, Error>) -> Session<Other, Value, Error>
+    public func flatMapRequests<Other>(transform: Other -> Result<Request, Error>) -> Session<Other, Value, Error>
     {
         return Session { other in
             switch transform(other)
@@ -134,7 +134,7 @@ extension SessionType where Value: MessageType
     /// This function is only available when `Value` conforms to `MessageType`.
     public func tupleSession() -> Session<Request, (response: Value.Response, body: Value.Body), Error>
     {
-        return map({ message in message.tuple })
+        return mapValues({ message in message.tuple })
     }
     
     // MARK: - Body Session
@@ -144,7 +144,7 @@ extension SessionType where Value: MessageType
     /// This function is only available when `Value` conforms to `MessageType`.
     public func bodySession() -> Session<Request, Value.Body, Error>
     {
-        return map({ message in message.body })
+        return mapValues({ message in message.body })
     }
 }
 
@@ -161,7 +161,7 @@ extension SessionType where Value: MessageType, Value.Response == NSURLResponse,
     /// `Requester.Error` is `NSError`.
     public func HTTPSession() -> Session<Request, Message<NSHTTPURLResponse, Value.Body>, Error>
     {
-        return flatMap(.Concat, transform: { message in
+        return flatMapValues(.Concat, transform: { message in
             message.HTTPMessage.map({ HTTPMessage in
                 SignalProducer(value: HTTPMessage)
             }) ?? SignalProducer(error: SessionError.NotHTTPResponse.NSError)
@@ -183,7 +183,7 @@ extension SessionType where Value == NSData, Error == NSError
     public func JSONSession(options: NSJSONReadingOptions = NSJSONReadingOptions())
         -> Session<Request, AnyObject, Error>
     {
-        return flatMap(.Concat, transform: { data in
+        return flatMapValues(.Concat, transform: { data in
             do
             {
                 return SignalProducer(value: try NSJSONSerialization.JSONObjectWithData(data, options: options))
@@ -211,7 +211,7 @@ extension SessionType where Value: MessageType, Value.Body == NSData, Error == N
     public func JSONSession(options: NSJSONReadingOptions = NSJSONReadingOptions())
         -> Session<Request, Message<Value.Response, AnyObject>, Error>
     {
-        return flatMap(.Concat, transform: { message in
+        return flatMapValues(.Concat, transform: { message in
             do
             {
                 return SignalProducer(value: try message.JSONMessage(options))

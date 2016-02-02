@@ -44,7 +44,7 @@ class SessionJSONTests: XCTestCase
     func testMessageJSON()
     {
         let session = StringDataSession<NSError>()
-            .map({ data in Message<Int, NSData>(response: 0, body: data) })
+            .mapValues({ data in Message<Int, NSData>(response: 0, body: data) })
             .JSONSession()
 
         let first = session.producerForRequest("{\"foo\":\"bar\"}").first()!
@@ -54,7 +54,7 @@ class SessionJSONTests: XCTestCase
     func testMessageJSONFragment()
     {
         let session = StringDataSession<NSError>()
-            .map({ data in Message<Int, NSData>(response: 0, body: data) })
+            .mapValues({ data in Message<Int, NSData>(response: 0, body: data) })
             .JSONSession(.AllowFragments)
 
         let first = session.producerForRequest("\"foo\"").first()!

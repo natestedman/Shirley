@@ -15,7 +15,7 @@ class SessionTypeTests: XCTestCase
 {
     func testTransformedRequests()
     {
-        let session = SquareSession().mapRequest({ (request: String) in request.characters.count })
+        let session = SquareSession().mapRequests({ (request: String) in request.characters.count })
         
         XCTAssertEqual(session.producerForRequest("").first()?.value, 0)
         XCTAssertEqual(session.producerForRequest("a").first()?.value, 1)
