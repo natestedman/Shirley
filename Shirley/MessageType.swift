@@ -39,18 +39,6 @@ extension MessageType
     {
         return (response, body)
     }
-    
-    // MARK: - Transforms
-    
-    /**
-    Transforms the `body` of a message, while keeping the same `response`.
-    
-    - parameter transform: The transformation function.
-    */
-    public func map<Other>(transform: Body -> Other) -> Message<Response, Other>
-    {
-        return Message(response: response, body: transform(body))
-    }
 }
 
 extension MessageType where Body == NSData
