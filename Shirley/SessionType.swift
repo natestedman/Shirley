@@ -125,6 +125,36 @@ extension SessionType
     }
 }
 
+extension SessionType
+{
+    // MARK: - Side-Effects
+
+    /**
+    Adds side-effect functions to a session's producers.
+
+    - parameter started:   A function to evaluate every time a producer is started.
+    - parameter next:      A function to evaluate every time a producer sends a `next` value.
+    - parameter completed: A function to evaluate every time a producer completes.
+    - parameter failed:    A function to evaluate every time a producer fails.
+    */
+    public func onProducer(
+        started started: (Request -> ())? = nil,
+        next: ((Request, Value) -> ())? = nil,
+        completed: (Request -> ())? = nil,
+        failed: ((Request, Error) -> ())? = nil)
+        -> Session<Request, Value, Error>
+    {
+        return Session { request in
+            self.producerForRequest(request).on(
+                started: { started?(request) },
+                next: { value in next?(request, value) },
+                completed: { completed?(request) },
+                failed: { error in failed?(request, error) }
+            )
+        }
+    }
+}
+
 extension SessionType where Value: MessageType
 {
     // MARK: - Tuple Session
