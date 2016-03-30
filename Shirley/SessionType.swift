@@ -20,13 +20,13 @@ public protocol SessionType
     // MARK: - Types
     
     /// The type of request used by the session to create signal producers.
-    typealias Request
+    associatedtype Request
     
     /// The type of values yielded by signal producers created by the session.
-    typealias Value
+    associatedtype Value
     
     /// The type of errors yielded by signal producers created by the session.
-    typealias Error: ErrorType
+    associatedtype Error: ErrorType
     
     // MARK: - Creating Signal Producers
     

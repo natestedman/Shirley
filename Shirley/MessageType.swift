@@ -16,10 +16,10 @@ public protocol MessageType
     // MARK: - Types
     
     /// The response value type.
-    typealias Response
+    associatedtype Response
     
     /// The body value type.
-    typealias Body
+    associatedtype Body
     
     // MARK: - Properties
     
