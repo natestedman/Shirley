@@ -26,7 +26,7 @@ public enum SessionError: Int, ErrorType
     // MARK: - Domain
     
     /// The domain for `NSError` objects created from `SessionError` values.
-    public static let domain = "com.natestedman.Shirley.SessionError"
+    public static let domain = "Shirley.SessionError"
     
     // MARK: - Errors
     
