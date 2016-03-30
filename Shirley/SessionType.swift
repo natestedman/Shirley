@@ -207,7 +207,7 @@ extension SessionType where Value: MessageType, Value.Response == NSHTTPURLRespo
     // MARK: - HTTP Errors
 
     /**
-     Converts message values with HTTP
+     Converts message values with HTTP error responses into failure events.
 
      - parameter userInfo: An optional function to provide custom user info values for the error. By default, a
                            localized description is provided, but if a different localized description is included in
