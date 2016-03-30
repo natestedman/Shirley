@@ -9,6 +9,6 @@ git:
 script:
   - /usr/local/bin/brew update
   - /usr/local/bin/brew install carthage
-  - /usr/local/bin/carthage bootstrap --platform Mac
+  - /usr/local/bin/carthage bootstrap --platform Mac --no-use-binaries
   - xctool -project Shirley.xcodeproj -scheme Shirley-OSX
   - xcodebuild test -project Shirley.xcodeproj -scheme Shirley-OSX
