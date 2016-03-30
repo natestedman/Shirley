@@ -40,10 +40,10 @@ class SessionTransformTests: XCTestCase
         var errorCount = 0
 
         let session = SquareSession().onProducer(
-            started: { _ in startCount++ },
-            next: { _ in nextCount++ },
-            completed: { _ in completedCount++ },
-            failed: { _ in errorCount++ }
+            started: { _ in startCount += 1 },
+            next: { _ in nextCount += 1 },
+            completed: { _ in completedCount += 1 },
+            failed: { _ in errorCount += 1 }
         )
 
         session.producerForRequest(2).start()
@@ -62,10 +62,10 @@ class SessionTransformTests: XCTestCase
         var errorCount = 0
 
         let session = ErrorSession().onProducer(
-            started: { _ in startCount++ },
-            next: { _ in nextCount++ },
-            completed: { _ in completedCount++ },
-            failed: { _ in errorCount++ }
+            started: { _ in startCount += 1 },
+            next: { _ in nextCount += 1 },
+            completed: { _ in completedCount += 1 },
+            failed: { _ in errorCount += 1 }
         )
 
         session.producerForRequest(2).start()
