@@ -23,8 +23,12 @@ extension SessionType where Request: Hashable
     {
         var signals = [Request:Signal<Value, Error>]()
 
+        let lock = NSRecursiveLock()
+
         return Session { request in
             SignalProducer { observer, disposable in
+                lock.lock()
+
                 if let signal = signals[request]
                 {
                     disposable += signal.observe(observer)
@@ -35,6 +39,8 @@ extension SessionType where Request: Hashable
                         signals[request] = signal
 
                         signal.observe(Observer { event in
+                            lock.lock()
+
                             if event.isTerminating
                             {
                                 signals.removeValueForKey(request)
@@ -44,9 +50,13 @@ extension SessionType where Request: Hashable
                             {
                                 observer.sendEvent(event)
                             }
+
+                            lock.unlock()
                         })
                     })
                 }
+
+                lock.unlock()
             }
         }
     }

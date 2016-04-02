@@ -50,6 +50,44 @@ class SessionDeduplicationTests: XCTestCase
         XCTAssertEqual(starts, 2)
         delay.advance()
     }
+
+    func testSynchronousCompletion()
+    {
+        // ensure that we don't deadlock when completing a deduplicated session synchronously
+        let session = SquareSession().deduplicatedSession()
+
+        let expect = expectationWithDescription("Did not deadlock")
+
+        BlockThread(block: {
+            session.producerForRequest(2).start()
+            expect.fulfill()
+        }).start()
+
+        waitForExpectationsWithTimeout(1, handler: nil)
+    }
+
+    func testBackgroundCompletion()
+    {
+        // session that performs work on a background thread
+        let session = Session<Int, Int, NoError> { request in
+            SignalProducer(value: request).delay(0.1, onScheduler: QueueScheduler(qos: QOS_CLASS_DEFAULT))
+        }
+
+        // count the number of starts - should only be one
+        var starts = 0
+        let dedupe = session.onProducer(started: { _ in starts += 1 }).deduplicatedSession()
+
+        // start outer session producer twice
+        let expect1 = expectationWithDescription("First Completed")
+        let expect2 = expectationWithDescription("Second Completed")
+
+        let producer = dedupe.producerForRequest(1)
+        producer.startWithCompleted({ expect1.fulfill() })
+        producer.startWithCompleted({ expect2.fulfill() })
+
+        waitForExpectationsWithTimeout(1, handler: nil)
+        XCTAssertEqual(starts, 1)
+    }
 }
 
 final class DelaySession<Request, Value, Error: ErrorType>
@@ -80,5 +118,20 @@ extension DelaySession: SessionType
     func producerForRequest(request: Request) -> SignalProducer<Value, Error>
     {
         return backing(request)
+    }
+}
+
+private class BlockThread: NSThread
+{
+    let block: () -> ()
+
+    init(block: () -> ())
+    {
+        self.block = block
+    }
+
+    private override func main()
+    {
+        block()
     }
 }
