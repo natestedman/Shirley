@@ -13,7 +13,7 @@ Shirley allows a set of value and error transforms to be applied to request resu
 ### Sessions
 A `SessionType` value converts `Request` values into ReactiveCocoa `SignalProducer` values. In addition to `Request`, `Value`, and `Error` typealiases, types conforming to `SessionType` provide `producerForRequest(:)`.
 
-Sessions can be transformed with the `mapRequests(:)`, `mapValues(:)`, `flatMapValues(::)`, and `flatMapErrors(:)` functions, or with the built-in transforms for JSON and HTTP support. These transformations return a value of the `Session` type, which can also be used for type-erasure of `SessionType` values. Transforming a session is non-destructive, so the underlying session can still be used independently, or transformed into multiple derived sessions.
+Sessions can be transformed with the `mapRequests(:)`, `mapValues(:)`, `flatMapValues(::)`, and `flatMapErrors(:)` functions, or with the built-in transforms for JSON and HTTP support. These transformations return a value of the `Session` type, which can also be used for type-erasure of `SessionType` values. For sessions with `Hashable` requests, the `deduplicatedSession()` function creates a session that ensures only one underlying signal per request is active at any time. Transforming a session is non-destructive, so the underlying session can still be used independently, or transformed into multiple derived sessions.
 
 `NSURLSession` is extended to conform to `SessionType`, using requests of type `NSURLRequest` to produce values of type `Message<NSURLResponse, NSData>` and errors of type `NSError`.
 
