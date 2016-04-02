@@ -13,7 +13,7 @@ Shirley allows a set of value and error transforms to be applied to request resu
 ### Sessions
 A `SessionType` value converts `Request` values into ReactiveCocoa `SignalProducer` values. In addition to `Request`, `Value`, and `Error` typealiases, types conforming to `SessionType` provide `producerForRequest(:)`.
 
-Sessions can be transformed with the `map(:)`, `flatMap(::)`, and `flatMapError(:)` functions, or with the built-in transforms for JSON and HTTP support. These transformations return a value of the `Session` type, which can also be used to unify disparate `SessionType` values under a single type, as long as they share the same `Request`, `Value`, and `Error` types. Transforming a session is non-destructive, so the underlying session can still be used independently, or transformed into multiple derived sessions.
+Sessions can be transformed with the `mapRequests(:)`, `mapValues(:)`, `flatMapValues(::)`, and `flatMapErrors(:)` functions, or with the built-in transforms for JSON and HTTP support. These transformations return a value of the `Session` type, which can also be used for type-erasure of `SessionType` values. Transforming a session is non-destructive, so the underlying session can still be used independently, or transformed into multiple derived sessions.
 
 `NSURLSession` is extended to conform to `SessionType`, using requests of type `NSURLRequest` to produce values of type `Message<NSURLResponse, NSData>` and errors of type `NSError`.
 
@@ -24,7 +24,7 @@ The `Message` type, which implements the `MessageType` protocol, is a container 
 
 `MessageType` provides extensions for converting `NSData` bodies to JSON, and for converting `NSURLResponse` responses to `NSHTTPURLResponse`.
 
-Messages are essentially "nicer two-tuples", and `MessageType` provides a `tuple` property is that format is preferred. The message conversions to tuples, JSON, and HTTP responses are also supported by `SessionType`, so that sessions _producing_ the prerequisite types can be transformed to sessions producing the derived types.
+Messages are essentially “nicer two-tuples”, and `MessageType` provides a `tuple` property is that format is preferred. The message conversions to tuples, JSON, and HTTP responses are also supported by `SessionType`, so that sessions _producing_ the prerequisite types can be transformed to sessions producing the derived types.
 
 ## Documentation
 If necessary, install `jazzy`:
