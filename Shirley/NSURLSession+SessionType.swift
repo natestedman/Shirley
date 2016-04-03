@@ -14,17 +14,6 @@ import ReactiveCocoa
 /// An implementation of `SessionType` for `NSURLSession`.
 extension NSURLSession: SessionType
 {
-    // MARK: - Types
-    
-    /// The type of values produced by successful URL requests.
-    public typealias Value = Message<NSURLResponse, NSData>
-    
-    /// The type of request consumed by the requester.
-    public typealias Request = NSURLRequest
-    
-    /// The type of error produced by the requester when a request fails.
-    public typealias Error = NSError
-    
     // MARK: - Signal Producers
     
     /**
@@ -32,7 +21,7 @@ extension NSURLSession: SessionType
      
      - parameter request: The URL request.
      */
-    public func producerForRequest(request: Request) -> SignalProducer<Message<NSURLResponse, NSData>, NSError>
+    public func producerForRequest(request: NSURLRequest) -> SignalProducer<Message<NSURLResponse, NSData>, NSError>
     {
         return rac_dataWithRequest(request).map({ data, response in
             Message(response: response, body: data)
