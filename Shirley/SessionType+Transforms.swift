@@ -44,7 +44,7 @@ extension SessionType
     */
     public func mapValues<Other>(transform: Value -> Other) -> Session<Request, Other, Error>
     {
-        return flatMapValues(.Concat, transform: { value in SignalProducer(value: transform(value)) })
+        return mapProducers({ $0.map(transform) })
     }
     
     /**
@@ -58,9 +58,7 @@ extension SessionType
     public func flatMapValues<Other>(strategy: FlattenStrategy, transform: Value -> SignalProducer<Other, Error>)
         -> Session<Request, Other, Error>
     {
-        return Session { request in
-            self.producerForRequest(request).flatMap(.Concat, transform: transform)
-        }
+        return mapProducers({ $0.flatMap(strategy, transform: transform) })
     }
     
     /**
@@ -73,9 +71,7 @@ extension SessionType
     public func flatMapErrors<Other>(transform: Error -> SignalProducer<Value, Other>)
         -> Session<Request, Value, Other>
     {
-        return Session { request in
-            self.producerForRequest(request).flatMapError(transform)
-        }
+        return mapProducers({ $0.flatMapError(transform) })
     }
     
     /**
