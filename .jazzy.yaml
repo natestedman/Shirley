@@ -4,6 +4,7 @@ custom_categories:
           - Session
           - SessionError
           - SessionType
+          - SessionTypeHTTPErrorDomain
     
     - name: Messages
       children:
