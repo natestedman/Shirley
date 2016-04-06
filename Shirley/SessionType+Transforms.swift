@@ -14,6 +14,26 @@ import Result
 extension SessionType
 {
     // MARK: - Transforms
+
+    /**
+     Transforms a session by transforming each producer the session creates for a request.
+
+     This function is equivalent to creating a `Session` like so:
+
+         Session { request in
+             transform(self.producerForRequest(request))
+         }
+
+     - parameter transform: The transform function to apply to each producer.
+     */
+    public func mapProducers<OtherValue, OtherError>
+        (transform: SignalProducer<Value, Error> -> SignalProducer<OtherValue, OtherError>)
+        -> Session<Request, OtherValue, OtherError>
+    {
+        return Session { request in
+            transform(self.producerForRequest(request))
+        }
+    }
     
     /**
     Transforms a session into a session with a different value type.
