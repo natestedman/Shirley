@@ -13,6 +13,8 @@ import ReactiveCocoa
 
 extension SessionType where Request: Hashable
 {
+    // MARK: - Deduplication
+
     /// Creates a session that deduplicates active requests based on a hash value, so that there at most one started
     /// signal producer per request in the underlying session.
     ///
