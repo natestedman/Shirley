@@ -16,7 +16,7 @@ class SessionTests: XCTestCase
     func testWrappedValue()
     {
         let wrapped = SquareSession()
-        let session = Session(session: wrapped)
+        let session = Session(wrapped)
         
         XCTAssertNotNil(wrapped.producerForRequest(2).first()?.value)
         XCTAssertNotNil(session.producerForRequest(2).first()?.value)
@@ -30,7 +30,7 @@ class SessionTests: XCTestCase
     func testWrappedError()
     {
         let wrapped = ErrorSession()
-        let session = Session(session: wrapped)
+        let session = Session(wrapped)
         
         XCTAssertNotNil(wrapped.producerForRequest(2).first()?.error?.value)
         XCTAssertNotNil(session.producerForRequest(2).first()?.error?.value)

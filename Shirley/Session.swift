@@ -35,7 +35,7 @@ public struct Session<Request, Value, Error: ErrorType>
     - parameter transform:  The transformation function to use.
     */
     public init<Wrapped: SessionType where Wrapped.Request == Request, Wrapped.Value == Value, Wrapped.Error == Error>
-        (session: Wrapped)
+        (_ session: Wrapped)
     {
         self.init(session.producerForRequest)
     }
