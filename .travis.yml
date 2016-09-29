@@ -1,14 +1,12 @@
 language: objective-c
 xcode_project: Shirley.xcodeproj
 xcode_scheme: Shirley-OSX
-osx_image: xcode7.3
+osx_image: xcode8
 before_install: true
 install: true
 git:
   submodules: false
 script:
-  - /usr/local/bin/brew update
-  - /usr/local/bin/brew install carthage
   - /usr/local/bin/carthage bootstrap --platform Mac --no-use-binaries
-  - xctool -project Shirley.xcodeproj -scheme Shirley-OSX
+  - xcodebuild -project Shirley.xcodeproj -scheme Shirley-OSX
   - xcodebuild test -project Shirley.xcodeproj -scheme Shirley-OSX
