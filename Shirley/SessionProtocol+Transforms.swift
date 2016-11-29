@@ -8,10 +8,10 @@
 // You should have received a copy of the CC0 Public Domain Dedication along with
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
-extension SessionType
+extension SessionProtocol
 {
     // MARK: - Transforms
 
@@ -21,17 +21,17 @@ extension SessionType
      This function is equivalent to creating a `Session` like so:
 
          Session { request in
-             transform(self.producerForRequest(request))
+             transform(self.producer(for: request))
          }
 
      - parameter transform: The transform function to apply to each producer.
      */
     public func mapProducers<OtherValue, OtherError>
-        (transform: SignalProducer<Value, Error> -> SignalProducer<OtherValue, OtherError>)
+        (_ transform: @escaping (SignalProducer<Value, Error>) -> SignalProducer<OtherValue, OtherError>)
         -> Session<Request, OtherValue, OtherError>
     {
         return Session { request in
-            transform(self.producerForRequest(request))
+            transform(self.producer(for: request))
         }
     }
     
@@ -42,7 +42,7 @@ extension SessionType
     
     - returns: A `Session`, with `Value` type `Other`.
     */
-    public func mapValues<Other>(transform: Value -> Other) -> Session<Request, Other, Error>
+    public func mapValues<Other>(_ transform: @escaping (Value) -> Other) -> Session<Request, Other, Error>
     {
         return mapProducers({ $0.map(transform) })
     }
@@ -50,12 +50,13 @@ extension SessionType
     /**
      Performs a `flatMap` operation on each `SignalProducer` this session creates.
 
-     - parameter strategy:  The flatten strategy to use.
+     - parameter strategy: The flatten strategy to use.
      - parameter transform: The transformation function.
 
      - returns: A `Session`, with `Value` type `Other`.
      */
-    public func flatMapValues<Other>(strategy: FlattenStrategy, transform: Value -> SignalProducer<Other, Error>)
+    public func flatMapValues<Other>(_ strategy: FlattenStrategy,
+                                     transform: @escaping (Value) -> SignalProducer<Other, Error>)
         -> Session<Request, Other, Error>
     {
         return mapProducers({ $0.flatMap(strategy, transform: transform) })
@@ -68,7 +69,7 @@ extension SessionType
      
      - returns: A `Session`, with `Error` type `Other`.
      */
-    public func flatMapErrors<Other>(transform: Error -> SignalProducer<Value, Other>)
+    public func flatMapErrors<Other>(_ transform: @escaping (Error) -> SignalProducer<Value, Other>)
         -> Session<Request, Value, Other>
     {
         return mapProducers({ $0.flatMapError(transform) })
@@ -82,10 +83,10 @@ extension SessionType
      
      - returns: A `Session`, with `Request` type `Other`.
      */
-    public func mapRequests<Other>(transform: Other -> Request) -> Session<Other, Value, Error>
+    public func mapRequests<Other>(_ transform: @escaping (Other) -> Request) -> Session<Other, Value, Error>
     {
         return Session { other in
-            self.producerForRequest(transform(other))
+            self.producer(for: transform(other))
         }
     }
 
@@ -98,14 +99,14 @@ extension SessionType
 
      - returns: A `Session`, with `Request` type `Other`.
      */
-    public func flatMapRequests<Other>(transform: Other -> Result<Request, Error>) -> Session<Other, Value, Error>
+    public func flatMapRequests<Other>(transform: @escaping (Other) -> Result<Request, Error>) -> Session<Other, Value, Error>
     {
         return Session { other in
             switch transform(other)
             {
-            case .Success(let request):
-                return self.producerForRequest(request)
-            case .Failure(let error):
+            case .success(let request):
+                return self.producer(for: request)
+            case .failure(let error):
                 return SignalProducer(error: error)
             }
         }

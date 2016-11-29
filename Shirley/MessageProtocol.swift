@@ -9,7 +9,7 @@
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 /// A protocol type for response messages, implemented by `Message`.
-public protocol MessageType
+public protocol MessageProtocol
 {
     // MARK: - Types
     
@@ -28,7 +28,7 @@ public protocol MessageType
     var body: Body { get }
 }
 
-extension MessageType
+extension MessageProtocol
 {
     // MARK: - Tuple
     

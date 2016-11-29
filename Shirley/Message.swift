@@ -9,7 +9,7 @@
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 /// A response message, with a response object and the response data.
-public struct Message<Response, Body>: MessageType
+public struct Message<Response, Body>: MessageProtocol
 {
     // MARK: - Initialization
     

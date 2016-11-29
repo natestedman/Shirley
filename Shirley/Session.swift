@@ -8,12 +8,12 @@
 // You should have received a copy of the CC0 Public Domain Dedication along with
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-import ReactiveCocoa
+import ReactiveSwift
 
 /// A session type that uses a closure to convert requests to signal producers.
 ///
-/// `Session` can also be used to erase the type of arbitrary `SessionType` values.
-public struct Session<Request, Value, Error: ErrorType>
+/// `Session` can also be used to erase the type of arbitrary `SessionProtocol` values.
+public struct Session<Request, Value, Error: Swift.Error>
 {
     // MARK: - Initialization
     
@@ -22,33 +22,33 @@ public struct Session<Request, Value, Error: ErrorType>
     
     - parameter function: The function to use to convert request values into signal producers.
     */
-    public init(_ function: Request -> SignalProducer<Value, Error>)
+    public init(_ function: @escaping (Request) -> SignalProducer<Value, Error>)
     {
         producerFunction = function
     }
     
     /**
-    Initializes a session by wrapping another `SessionType` with the same `Request`, `Value`, and `Error`, erasing its
+    Initializes a session by wrapping another `SessionProtocol` with the same `Request`, `Value`, and `Error`, erasing its
     type.
     
     - parameter URLSession: The URL session to use.
     - parameter transform:  The transformation function to use.
     */
-    public init<Wrapped: SessionType where Wrapped.Request == Request, Wrapped.Value == Value, Wrapped.Error == Error>
-        (_ session: Wrapped)
+    public init<Wrapped: SessionProtocol>
+        (_ session: Wrapped) where Wrapped.Request == Request, Wrapped.Value == Value, Wrapped.Error == Error
     {
-        self.init(session.producerForRequest)
+        self.init(session.producer)
     }
     
     // MARK: - Properties
     
     /// Wraps the inner session without directly referencing its type.
-    let producerFunction: Request -> SignalProducer<Value, Error>
+    let producerFunction: (Request) -> SignalProducer<Value, Error>
 }
 
-extension Session: SessionType
+extension Session: SessionProtocol
 {
-    // MARK: - SessionType
+    // MARK: - SessionProtocol
     
     /**
     Converts a request into a `SignalProducer` value.
@@ -57,7 +57,7 @@ extension Session: SessionType
     
     - returns: A signal producer for the request.
     */
-    public func producerForRequest(request: Request) -> SignalProducer<Value, Error>
+    public func producer(for request: Request) -> SignalProducer<Value, Error>
     {
         return producerFunction(request)
     }

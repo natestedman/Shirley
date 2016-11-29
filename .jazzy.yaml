@@ -3,16 +3,15 @@ custom_categories:
       children:
           - Session
           - SessionError
-          - SessionType
-          - SessionTypeHTTPErrorDomain
-    
+          - SessionHTTPErrorDomain
+          - SessionProtocol
+
     - name: Messages
       children:
           - Message
-          - MessageType
-    
-    - name: NSURLSession
+          - MessageProtocol
+
+    - name: URLSession
       children:
-          - NSURLSession
           - UploadRequest
-          - UploadRequestSource
+          - URLSession

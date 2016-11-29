@@ -9,13 +9,13 @@
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 // MARK: - Protocol
 
 /// A protocol type for sessions, implemented by `Session`.
-public protocol SessionType
+public protocol SessionProtocol
 {
     // MARK: - Types
     
@@ -26,7 +26,7 @@ public protocol SessionType
     associatedtype Value
     
     /// The type of errors yielded by signal producers created by the session.
-    associatedtype Error: ErrorType
+    associatedtype Error: Swift.Error
     
     // MARK: - Creating Signal Producers
     
@@ -37,5 +37,5 @@ public protocol SessionType
      
      - returns: A signal producer for the request.
      */
-    func producerForRequest(request: Request) -> SignalProducer<Value, Error>
+    func producer(for request: Request) -> SignalProducer<Value, Error>
 }

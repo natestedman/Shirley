@@ -11,14 +11,14 @@
 import Shirley
 import XCTest
 
-class SessionTypeTests: XCTestCase
+class SessionProtocolTests: XCTestCase
 {
     func testTransformedRequests()
     {
         let session = SquareSession().mapRequests({ (request: String) in request.characters.count })
         
-        XCTAssertEqual(session.producerForRequest("").first()?.value, 0)
-        XCTAssertEqual(session.producerForRequest("a").first()?.value, 1)
-        XCTAssertEqual(session.producerForRequest("test").first()?.value, 16)
+        XCTAssertEqual(session.producer(for: "").first()?.value, 0)
+        XCTAssertEqual(session.producer(for: "a").first()?.value, 1)
+        XCTAssertEqual(session.producer(for: "test").first()?.value, 16)
     }
 }

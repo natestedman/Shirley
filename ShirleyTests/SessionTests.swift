@@ -18,12 +18,12 @@ class SessionTests: XCTestCase
         let wrapped = SquareSession()
         let session = Session(wrapped)
         
-        XCTAssertNotNil(wrapped.producerForRequest(2).first()?.value)
-        XCTAssertNotNil(session.producerForRequest(2).first()?.value)
+        XCTAssertNotNil(wrapped.producer(for: 2).first()?.value)
+        XCTAssertNotNil(session.producer(for: 2).first()?.value)
         
         XCTAssertEqual(
-            wrapped.producerForRequest(2).first()?.value,
-            session.producerForRequest(2).first()?.value
+            wrapped.producer(for: 2).first()?.value,
+            session.producer(for: 2).first()?.value
         )
     }
     
@@ -32,12 +32,12 @@ class SessionTests: XCTestCase
         let wrapped = ErrorSession()
         let session = Session(wrapped)
         
-        XCTAssertNotNil(wrapped.producerForRequest(2).first()?.error?.value)
-        XCTAssertNotNil(session.producerForRequest(2).first()?.error?.value)
+        XCTAssertNotNil(wrapped.producer(for: 2).first()?.error?.value)
+        XCTAssertNotNil(session.producer(for: 2).first()?.error?.value)
         
         XCTAssertEqual(
-            wrapped.producerForRequest(2).first()?.error?.value,
-            session.producerForRequest(2).first()?.error?.value
+            wrapped.producer(for: 2).first()?.error?.value,
+            session.producer(for: 2).first()?.error?.value
         )
     }
 }

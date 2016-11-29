@@ -9,18 +9,18 @@
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 @testable import Shirley
-import ReactiveCocoa
+import ReactiveSwift
 import XCTest
 
 class SessionTransformTests: XCTestCase
 {
     func testTransformedValues()
     {
-        let session = SquareSession().flatMapValues(.Latest, transform: { result in
+        let session = SquareSession().flatMapValues(.latest, transform: { result in
             SignalProducer(value: result * 2)
         })
         
-        XCTAssertEqual(session.producerForRequest(2).first()?.value, 8)
+        XCTAssertEqual(session.producer(for: 2).first()?.value, 8)
     }
     
     func testTransformedErrors()
@@ -29,7 +29,7 @@ class SessionTransformTests: XCTestCase
             SignalProducer(error: TestError(value: error.value + 1))
         })
         
-        XCTAssertEqual(session.producerForRequest(2).first()?.error?.value, 3)
+        XCTAssertEqual(session.producer(for: 2).first()?.error?.value, 3)
     }
 
     func testOnProducerSuccess()
@@ -39,14 +39,16 @@ class SessionTransformTests: XCTestCase
         var completedCount = 0
         var errorCount = 0
 
-        let session = SquareSession().onProducer(
-            started: { _ in startCount += 1 },
-            next: { _ in nextCount += 1 },
-            completed: { _ in completedCount += 1 },
-            failed: { _ in errorCount += 1 }
-        )
+        let session = SquareSession().mapProducers({ producer in
+            producer.on(
+                started: { _ in startCount += 1 },
+                value: { _ in nextCount += 1 },
+                failed: { _ in errorCount += 1 },
+                completed: { _ in completedCount += 1 }
+            )
+        })
 
-        session.producerForRequest(2).start()
+        session.producer(for: 2).start()
 
         XCTAssertEqual(startCount, 1)
         XCTAssertEqual(nextCount, 1)
@@ -61,14 +63,16 @@ class SessionTransformTests: XCTestCase
         var completedCount = 0
         var errorCount = 0
 
-        let session = ErrorSession().onProducer(
-            started: { _ in startCount += 1 },
-            next: { _ in nextCount += 1 },
-            completed: { _ in completedCount += 1 },
-            failed: { _ in errorCount += 1 }
-        )
+        let session = ErrorSession().mapProducers({ producer in
+            producer.on(
+                started: { _ in startCount += 1 },
+                value: { _ in nextCount += 1 },
+                failed: { _ in errorCount += 1 },
+                completed: { _ in completedCount += 1 }
+            )
+        })
 
-        session.producerForRequest(2).start()
+        session.producer(for: 2).start()
 
         XCTAssertEqual(startCount, 1)
         XCTAssertEqual(nextCount, 0)

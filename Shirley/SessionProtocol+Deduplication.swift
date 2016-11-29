@@ -9,9 +9,9 @@
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 
-extension SessionType where Request: Hashable
+extension SessionProtocol where Request: Hashable
 {
     // MARK: - Deduplication
 
@@ -21,7 +21,7 @@ extension SessionType where Request: Hashable
     /// Currently, underlying signal producers are not disposed until termination, even if all outer observers are
     /// disposed. Of course, a new observer could be added while the underlying producer is still active. This behavior
     /// may change in the future.
-    public func deduplicatedSession() -> Session<Request, Value, Error>
+    public var deduplicated: Session<Request, Value, Error>
     {
         var signals = [Request:Signal<Value, Error>]()
 
@@ -37,24 +37,24 @@ extension SessionType where Request: Hashable
                 }
                 else
                 {
-                    self.producerForRequest(request).startWithSignal({ signal, _ in
+                    self.producer(for: request).startWithSignal({ signal, _ in
                         signals[request] = signal
 
-                        signal.observe(Observer { event in
+                        signal.observe { event in
                             lock.lock()
 
                             if event.isTerminating
                             {
-                                signals.removeValueForKey(request)
+                                signals.removeValue(forKey: request)
                             }
 
-                            if !disposable.disposed
+                            if !disposable.isDisposed
                             {
-                                observer.sendEvent(event)
+                                observer.send(event: event)
                             }
 
                             lock.unlock()
-                        })
+                        }
                     })
                 }
 
@@ -66,17 +66,17 @@ extension SessionType where Request: Hashable
 
 extension Observer
 {
-    private func sendEvent(event: Event<Value, Error>)
+    fileprivate func send(event: Event<Value, Error>)
     {
         switch event
         {
-        case .Next(let value):
-            sendNext(value)
-        case .Failed(let error):
-            sendFailed(error)
-        case .Completed:
+        case .value(let value):
+            send(value: value)
+        case .failed(let error):
+            send(error: error)
+        case .completed:
             sendCompleted()
-        case .Interrupted:
+        case .interrupted:
             sendInterrupted()
         }
     }

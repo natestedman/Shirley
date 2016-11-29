@@ -8,35 +8,27 @@
 // You should have received a copy of the CC0 Public Domain Dedication along with
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 import Shirley
 
-struct SquareSession: SessionType
+struct SquareSession: SessionProtocol
 {
-    typealias Request = Int
-    typealias Value = Int
-    typealias Error = NoError
-    
-    func producerForRequest(request: Int) -> SignalProducer<Int, NoError>
+    func producer(for request: Int) -> SignalProducer<Int, NoError>
     {
         return SignalProducer(value: request * request)
     }
 }
 
-struct ErrorSession: SessionType
+struct ErrorSession: SessionProtocol
 {
-    typealias Request = Int
-    typealias Value = Int
-    typealias Error = TestError
-    
-    func producerForRequest(request: Int) -> SignalProducer<Int, TestError>
+    func producer(for request: Int) -> SignalProducer<Int, TestError>
     {
         return SignalProducer(error: TestError(value: request))
     }
 }
 
-struct TestError: ErrorType
+struct TestError: Error
 {
     let value: Int
 }

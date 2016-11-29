@@ -9,26 +9,26 @@
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 
-extension SessionType where Value == NSData, Error == NSError
+extension SessionProtocol where Value == Data, Error == NSError
 {
     // MARK: - JSON Session
     
     /**
-    Returns a transformed session, converting `NSData` to JSON `AnyObject`.
+    Returns a transformed session, converting `Data` to JSON `AnyObject`.
     
-    This function is only available if `Value` is `NSData` and `Requester.Error` is `NSError`.
+    This function is only available if `Value` is `Data` and `Requester.Error` is `NSError`.
     
     - parameter options: The JSON reading options. If omitted, an empty set of options will be used.
     */
-    public func JSONSession(options: NSJSONReadingOptions = NSJSONReadingOptions())
-        -> Session<Request, AnyObject, Error>
+    public func json(options: JSONSerialization.ReadingOptions = JSONSerialization.ReadingOptions())
+        -> Session<Request, Any, Error>
     {
-        return flatMapValues(.Concat, transform: { data in
+        return flatMapValues(.concat, transform: { data in
             do
             {
-                return SignalProducer(value: try NSJSONSerialization.JSONObjectWithData(data, options: options))
+                return SignalProducer(value: try JSONSerialization.jsonObject(with: data, options: options))
             }
             catch let error as NSError
             {
@@ -38,27 +38,27 @@ extension SessionType where Value == NSData, Error == NSError
     }
 }
 
-extension SessionType where Value: MessageType, Value.Body == NSData, Error == NSError
+extension SessionProtocol where Value: MessageProtocol, Value.Body == Data, Error == NSError
 {
     // MARK: - JSON Message Session
     
     /**
-    Returns a transformed session, converting a message body `NSData` to JSON `AnyObject`.
+    Returns a transformed session, converting a message body `Data` to JSON `AnyObject`.
     
-    This function is only available if `Value` is a `MessageType` with `Body` type `NSData`, and `Requester.Error` is
+    This function is only available if `Value` is a `MessageProtocol` with `Body` type `Data`, and `Requester.Error` is
     `NSError`.
     
     - parameter options: The JSON reading options. If omitted, an empty set of options will be used.
     */
-    public func JSONSession(options: NSJSONReadingOptions = NSJSONReadingOptions())
-        -> Session<Request, Message<Value.Response, AnyObject>, Error>
+    public func json(options: JSONSerialization.ReadingOptions = JSONSerialization.ReadingOptions())
+        -> Session<Request, Message<Value.Response, Any>, Error>
     {
-        return flatMapValues(.Concat, transform: { message in
+        return flatMapValues(.concat, transform: { message in
             do
             {
                 return SignalProducer(value: Message(
                     response: message.response,
-                    body: try NSJSONSerialization.JSONObjectWithData(message.body, options: options)
+                    body: try JSONSerialization.jsonObject(with: message.body, options: options)
                 ))
             }
             catch let error as NSError

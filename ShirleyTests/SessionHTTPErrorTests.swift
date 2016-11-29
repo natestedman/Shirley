@@ -8,20 +8,21 @@
 // You should have received a copy of the CC0 Public Domain Dedication along with
 // this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-import ReactiveCocoa
+import ReactiveSwift
 import Shirley
 import XCTest
 
-private struct HTTPErrorSession: SessionType
+private struct HTTPErrorSession: SessionProtocol
 {
-    typealias Request = (Int, String)
-    typealias Value = Message<NSHTTPURLResponse, String>
-    typealias Error = NSError
-
-    func producerForRequest(request: Request) -> SignalProducer<Value, Error>
+    func producer(for request: (Int, String)) -> SignalProducer<Message<HTTPURLResponse, String>, NSError>
     {
         return SignalProducer(value: Message(
-            response: NSHTTPURLResponse(URL: NSURL(), statusCode: request.0, HTTPVersion: nil, headerFields: nil)!,
+            response: HTTPURLResponse(
+                url: URL(string: "http://test.com")!,
+                statusCode: request.0,
+                httpVersion: nil,
+                headerFields: nil
+            )!,
             body: request.1
         ))
     }
@@ -33,7 +34,7 @@ class SessionHTTPErrorTests: XCTestCase
     {
         let session = HTTPErrorSession().raiseHTTPErrors()
 
-        let first = session.producerForRequest((200, "test")).first()!
+        let first = session.producer(for: (200, "test")).first()!
         XCTAssertEqual(first.value?.body, "test")
     }
 
@@ -41,8 +42,8 @@ class SessionHTTPErrorTests: XCTestCase
     {
         let session = HTTPErrorSession().raiseHTTPErrors()
 
-        let first = session.producerForRequest((400, "test")).first()!
-        XCTAssertEqual(first.error?.domain, SessionTypeHTTPErrorDomain)
+        let first = session.producer(for: (400, "test")).first()!
+        XCTAssertEqual(first.error?.domain, SessionHTTPErrorDomain)
         XCTAssertEqual(first.error?.code, 400)
     }
 
@@ -50,7 +51,7 @@ class SessionHTTPErrorTests: XCTestCase
     {
         let session = HTTPErrorSession().raiseHTTPErrors(userInfo: { _, body in ["body": body] })
 
-        let first = session.producerForRequest((400, "test")).first()!
+        let first = session.producer(for: (400, "test")).first()!
         XCTAssertEqual(first.error?.userInfo["body"] as? String, "test")
     }
 
@@ -58,7 +59,7 @@ class SessionHTTPErrorTests: XCTestCase
     {
         let session = HTTPErrorSession().raiseHTTPErrors(userInfo: { _, body in [NSLocalizedDescriptionKey: body] })
 
-        let first = session.producerForRequest((400, "test")).first()!
+        let first = session.producer(for: (400, "test")).first()!
         XCTAssertEqual(first.error?.userInfo[NSLocalizedDescriptionKey] as? String, "test")
     }
 }
