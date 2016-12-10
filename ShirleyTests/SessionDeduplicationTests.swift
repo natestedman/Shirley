@@ -109,7 +109,7 @@ final class DelaySession<Request, Value, Error: Swift.Error>
 
     func advance()
     {
-        scheduler.advance(by: 1)
+        scheduler.advance(by: .seconds(1))
     }
 }
 

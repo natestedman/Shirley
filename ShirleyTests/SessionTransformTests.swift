@@ -42,9 +42,9 @@ class SessionTransformTests: XCTestCase
         let session = SquareSession().mapProducers({ producer in
             producer.on(
                 started: { _ in startCount += 1 },
-                value: { _ in nextCount += 1 },
                 failed: { _ in errorCount += 1 },
-                completed: { _ in completedCount += 1 }
+                completed: { _ in completedCount += 1 },
+                value: { _ in nextCount += 1 }
             )
         })
 
@@ -66,9 +66,9 @@ class SessionTransformTests: XCTestCase
         let session = ErrorSession().mapProducers({ producer in
             producer.on(
                 started: { _ in startCount += 1 },
-                value: { _ in nextCount += 1 },
                 failed: { _ in errorCount += 1 },
-                completed: { _ in completedCount += 1 }
+                completed: { _ in completedCount += 1 },
+                value: { _ in nextCount += 1 }
             )
         })
 
